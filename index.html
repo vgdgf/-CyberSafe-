@@ -1,91 +1,197 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>مذكّر الأمان السيبراني — CyberSafe</title>
-<meta name="description" content="مذكّر يومي لنصائح الأمن السيبراني، مولد كلمات مرور، فحص قوة كلمة السر، ونظام نقاط ومكافآت. تطبيق ويب تقدمي (PWA) متقدم وفخم." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23121212'/%3E%3Ctext x='50' y='60' font-size='36' text-anchor='middle' fill='%2300ff9f'%3E🔒%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#0b1220" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberSafe Pro 2.0</title>
+<meta name="description" content="تطبيق ويب متقدم جدًا للأمن السيبراني: نصائح ذكية، مولد كلمات مرور، نقاط ومكافآت، مهام يومية، إحصائيات تفاعلية، PWA جاهز.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230b1220'/><text x='50' y='60' font-size='36' text-anchor='middle' fill='%2300ff9f'>🔒</text></svg>">
 <style>
-  :root{ --bg:#07101a; --card:#0f1720; --muted:#98a0a6; --accent:#00ff9f; --glass:rgba(255,255,255,0.04); --glass-2:rgba(255,255,255,0.02);}
-  *{box-sizing:border-box;font-family: 'Inter', system-ui, Tahoma, Arial;}
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,#061018 0%, #081421 60%);color:#e6eef6;overflow-x:hidden;padding:20px;}
-  h1{text-align:center;font-size:2.5rem;margin-bottom:20px;color:var(--accent);text-shadow:0 0 15px var(--accent);}
-  .app{max-width:980px;margin:auto;padding:0 10px;}
-  .card{background:linear-gradient(180deg,var(--card),var(--glass-2));padding:25px;border-radius:16px;box-shadow:0 8px 40px rgba(2,6,23,0.6);backdrop-filter: blur(15px);margin-bottom:30px;transition: transform 0.5s, box-shadow 0.5s;position:relative;}
-  .card:hover{transform: translateY(-10px) scale(1.02);box-shadow:0 0 40px var(--accent);}
-  button{background: var(--accent); border:none; padding:12px 25px; border-radius:12px; color:#000; font-weight:bold; cursor:pointer; margin-top:10px; transition: transform 0.3s, box-shadow 0.3s;}
-  button:hover{transform: scale(1.1); box-shadow:0 0 15px var(--accent);}
-  input[type="text"], input[type="number"]{width:100%;padding:12px;margin-top:10px;border-radius:12px;border:none;outline:none;background:rgba(255,255,255,0.04);color:#fff;}
-  .fade-in{opacity:0;animation:fadeIn 1.5s forwards;}
-  @keyframes fadeIn{to{opacity:1;}}
-  .badge{display:inline-block;background:var(--accent);color:#000;padding:7px 15px;border-radius:15px;margin:5px 5px 0 0;font-weight:bold;animation:glow 1.5s infinite alternate;}
-  @keyframes glow{from {box-shadow:0 0 5px var(--accent);} to{box-shadow:0 0 25px var(--accent);}}
-  .parallax{transform: translateY(0px); transition: transform 0.2s;}
-  .tips-list{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
-  .tip{display:flex;gap:12px;align-items:flex-start;}
-  .tip .ico{width:44px;height:44px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;}
-  .muted{color:var(--muted);font-size:13px;}
+:root{
+  --day-bg:#f0f4f8;
+  --day-card:#ffffffcc;
+  --day-text:#000;
+  --day-accent:#00bfa5;
+  --night-bg:#0b1220;
+  --night-card:rgba(15,23,32,0.85);
+  --night-text:#e6eef6;
+  --night-accent:#00ff9f;
+  --glass:rgba(255,255,255,0.05);
+  --glass-2:rgba(255,255,255,0.02);
+}
+*{box-sizing:border-box;font-family:'Inter',system-ui,Tahoma,Arial;}
+html,body{margin:0;padding:0;transition:background 0.5s,color 0.5s;}
+body.day{background:var(--day-bg);color:var(--day-text);}
+body.night{background:var(--night-bg);color:var(--night-text);}
+h1,h2,h3{margin:0 0 15px 0;}
+h1{text-align:center;font-size:2.5rem;color:var(--night-accent);text-shadow:0 0 20px var(--night-accent);}
+body.day h1{color:var(--day-accent);text-shadow:0 0 15px var(--day-accent);}
+.app{max-width:980px;margin:auto;padding:0 10px;}
+.tabs{display:flex;justify-content:space-around;margin-bottom:15px;}
+.tab{flex:1;text-align:center;padding:12px;border-radius:12px;background:var(--glass);cursor:pointer;transition:all 0.3s;font-weight:bold;}
+.tab.active{background:var(--night-accent);color:#000;}
+body.day .tab.active{background:var(--day-accent);color:#000;}
+.card{background:var(--night-card);padding:25px;border-radius:18px;box-shadow:0 8px 40px rgba(2,6,23,0.6);backdrop-filter:blur(15px);margin-bottom:25px;transition:transform 0.5s,box-shadow 0.5s,background 0.5s,color 0.5s;display:none;}
+body.day .card{background:var(--day-card);}
+.card.active{display:block;}
+button{background:var(--night-accent);border:none;padding:12px 25px;border-radius:12px;color:#000;font-weight:bold;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;}
+body.day button{background:var(--day-accent);}
+button:hover{transform:scale(1.1);box-shadow:0 0 15px var(--night-accent);}
+body.day button:hover{box-shadow:0 0 15px var(--day-accent);}
+input[type="text"], input[type="number"]{width:100%;padding:12px;margin-top:10px;border-radius:12px;border:none;outline:none;background:var(--glass);color:#fff;}
+body.day input{color:#000;}
+.fade-in{opacity:0;animation:fadeIn 1.5s forwards;}
+@keyframes fadeIn{to{opacity:1;}}
+.badge{display:inline-block;background:var(--night-accent);color:#000;padding:7px 15px;border-radius:15px;margin:5px 5px 0 0;font-weight:bold;animation:glow 1.5s infinite alternate;}
+body.day .badge{background:var(--day-accent);}
+@keyframes glow{from{box-shadow:0 0 5px var(--night-accent);} to{box-shadow:0 0 25px var(--night-accent);}}
+.tip{display:flex;gap:12px;align-items:flex-start;opacity:0;animation:tipFade 0.8s forwards;}
+@keyframes tipFade{to{opacity:1;}}
+.tip .ico{width:44px;height:44px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-size:1.5rem;animation:iconBounce 1s infinite alternate;}
+@keyframes iconBounce{0%{transform:translateY(0);}100%{transform:translateY(-5px);}}
+.muted{font-size:13px;color:var(--muted);}
+.strength-bar{height:12px;border-radius:8px;background:var(--glass);margin-top:8px;overflow:hidden;}
+.strength-fill{height:100%;width:0%;background:var(--night-accent);transition:width 0.3s;}
+body.day .strength-fill{background:var(--day-accent);}
+#activityLog{max-height:200px;overflow-y:auto;background:var(--glass);padding:10px;border-radius:12px;margin-top:10px;font-size:13px;}
+.stats{display:flex;justify-content:space-around;margin-top:10px;}
+.stat{background:var(--glass);padding:12px;border-radius:12px;width:30%;text-align:center;}
+body.day .stat{color:#000;}
 </style>
 </head>
 <body>
-<h1>مذكّر الأمان السيبراني — CyberSafe</h1>
+<h1>CyberSafe Pro 2.0</h1>
 <div class="app">
-  <!-- نصائح اليوم -->
-  <div class="card fade-in parallax" id="tipCard">
-    <h2>نصيحة اليوم:</h2>
-    <div class="tips-list" id="todayTipArea"></div>
-    <button onclick="nextTip()">نصيحة جديدة</button>
-  </div>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">نصائح</div>
+  <div class="tab" onclick="switchTab(1)">كلمات المرور</div>
+  <div class="tab" onclick="switchTab(2)">نقاط</div>
+  <div class="tab" onclick="switchTab(3)">مهام</div>
+  <div class="tab" onclick="switchTab(4)">إحصائيات</div>
+</div>
 
-  <!-- مولد كلمات المرور -->
-  <div class="card fade-in parallax">
-    <h2>مولد كلمات المرور</h2>
-    <input type="number" id="pwLen" min="6" max="64" value="16">
-    <button onclick="generatePassword()">إنشاء كلمة مرور</button>
-    <input type="text" id="passwordField" placeholder="كلمة المرور ستظهر هنا" readonly>
-    <p id="strength"></p>
-  </div>
+<!-- نصائح -->
+<div class="card active" id="card0">
+  <h2>نصيحة اليوم</h2>
+  <div id="todayTipArea"></div>
+  <button onclick="nextTip()">نصيحة جديدة</button>
+</div>
 
-  <!-- نقاط ومكافآت -->
-  <div class="card fade-in parallax">
-    <h2>نقاطك ومكافآتك</h2>
-    <p>النقاط: <span id="points">0</span></p>
-    <div id="badges"></div>
-    <button onclick="earnPoints()">اكسب نقطة</button>
+<!-- مولد كلمات المرور -->
+<div class="card" id="card1">
+  <h2>مولد كلمات المرور</h2>
+  <input type="number" id="pwLen" min="6" max="64" value="16">
+  <button onclick="generatePassword()">إنشاء كلمة مرور</button>
+  <input type="text" id="passwordField" placeholder="كلمة المرور ستظهر هنا" readonly>
+  <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+  <p id="strength"></p>
+</div>
+
+<!-- نقاط -->
+<div class="card" id="card2">
+  <h2>نقاطك ومكافآتك</h2>
+  <p>النقاط: <span id="points">0</span></p>
+  <div id="badges"></div>
+  <button onclick="earnPoints()">اكسب نقطة</button>
+</div>
+
+<!-- مهام -->
+<div class="card" id="card3">
+  <h2>مهام يومية</h2>
+  <div id="dailyTasks"></div>
+</div>
+
+<!-- إحصائيات -->
+<div class="card" id="card4">
+  <h2>إحصائياتك</h2>
+  <div class="stats">
+    <div class="stat">النصائح: <span id="statTips">0</span></div>
+    <div class="stat">كلمات المرور: <span id="statPasswords">0</span></div>
+    <div class="stat">المهام: <span id="statTasks">0</span></div>
   </div>
+  <div id="activityLog"></div>
+</div>
 </div>
 
 <script>
-const tips = [
-  {title:'تحقق من رابط مختصر قبل فتحه', body:'اضغط على الرابط مطولاً أو استخدم خدمة معاينة لرؤية الرابط الكامل.'},
-  {title:'فعّل المصادقة الثنائية', body:'استخدم تطبيق مصادقة أو رسالة SMS لحماية حساباتك المهمة.'},
-  {title:'لا تشارك كلمات المرور', body:'لا تشارك كلمات المرور عبر رسائل أو منصات عامة.'},
-  {title:'استخدم كلمات مرور طويلة', body:'اختر كلمات مرور من 12 حرفاً على الأقل.'},
-  {title:'حدّث تطبيقاتك ونظام التشغيل', body:'التحديثات تُغلق ثغرات قد يستغلها القراصنة.'}
-];
+// ===== Tabs =====
+function switchTab(i){
+  document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+  document.querySelectorAll('.card').forEach((c,idx)=>c.classList.toggle('active',idx===i));
+}
 
-let usedTips = JSON.parse(localStorage.getItem('usedTips')) || [];
+// ===== وضع نهاري/ليلي =====
+function setTheme(){const h=new Date().getHours();document.body.className=(h>=7 && h<19)?"day":"night";}
+setTheme(); setInterval(setTheme,60000);
+
+// ===== نصائح ذكية موسعة =====
+const tips=[
+{title:'تحقق من الروابط', body:'افحص أي رابط قبل النقر عليه باستخدام معاينة الرابط.', icon:'🔰'},
+{title:'فعّل المصادقة الثنائية', body:'استخدم تطبيقات المصادقة أو SMS لحماية حساباتك.', icon:'🛡️'},
+{title:'لا تشارك كلمات المرور', body:'حافظ على سرية كلمات المرور.', icon:'🔑'},
+{title:'كلمات مرور قوية', body:'اختر كلمات مرور طويلة ومعقدة.', icon:'📝'},
+{title:'تحديث التطبيقات', body:'التحديثات تغلق ثغرات الأمان.', icon:'⚡'},
+{title:'استخدم VPN', body:'لحماية بياناتك عند الواي فاي العام.', icon:'🌐'},
+{title:'نسخ احتياطية', body:'احفظ نسخة احتياطية من بياناتك بانتظام.', icon:'💾'}
+];
+let usedTips=JSON.parse(localStorage.getItem('usedTips'))||[];
 function todayKey(){const d=new Date();return `cybersafe_tip_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;}
-function showTip(){const stored=localStorage.getItem(todayKey()); let tipIndex;if(stored!==null){tipIndex=parseInt(stored);}else{tipIndex=Math.floor(Math.random()*tips.length);localStorage.setItem(todayKey(),tipIndex);} const tip=tips[tipIndex]; document.getElementById('todayTipArea').innerHTML = `<div class="tip"><div class="ico">🔰</div><div><h3>${tip.title}</h3><div class="muted">${tip.body}</div></div></div>`;}
-function nextTip(){let available=tips.filter((_,i)=>!usedTips.includes(i)); if(available.length===0){usedTips=[]; available=tips;} let index=tips.indexOf(available[Math.floor(Math.random()*available.length)]); usedTips.push(index); localStorage.setItem('usedTips',JSON.stringify(usedTips)); showTip(); notifyTip(tips[index].body);}
+function showTip(){const stored=localStorage.getItem(todayKey());let tipIndex;if(stored!==null){tipIndex=parseInt(stored);}else{tipIndex=Math.floor(Math.random()*tips.length);localStorage.setItem(todayKey(),tipIndex);} const tip=tips[tipIndex]; document.getElementById('todayTipArea').innerHTML=`<div class="tip"><div class="ico">${tips[tipIndex].icon}</div><div><h3>${tips[tipIndex].title}</h3><div class="muted">${tips[tipIndex].body}</div></div></div>`;}
+function nextTip(){let available=tips.filter((_,i)=>!usedTips.includes(i)); if(available.length===0){usedTips=[]; available=tips;} let index=tips.indexOf(available[Math.floor(Math.random()*available.length)]); usedTips.push(index); localStorage.setItem('usedTips',JSON.stringify(usedTips)); showTip(); logActivity(`قراءة نصيحة: ${tips[index].title}`); updateStats();}
 showTip();
 
-function notifyTip(message){if(Notification.permission==="granted"){new Notification("نصيحة اليوم",{body:message});}else if(Notification.permission!=="denied"){Notification.requestPermission().then(p=>{if(p==="granted")new Notification("نصيحة اليوم",{body:message});});}}
+// ===== مولد كلمات المرور =====
+let passwordCount=0;
+function generatePassword(){
+  const len=Math.max(6,Math.min(64,parseInt(document.getElementById('pwLen').value||16)));
+  const chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]';
+  let pw=''; for(let i=0;i<len;i++) pw+=chars[Math.floor(Math.random()*chars.length)];
+  document.getElementById('passwordField').value=pw;
+  const s=passwordStrength(pw);
+  document.getElementById('strength').innerText="قوة كلمة المرور: "+s.text;
+  document.getElementById('strengthFill').style.width=s.percent+"%";
+  logActivity(`إنشاء كلمة مرور (${s.text})`);
+  passwordCount++; updateStats();
+}
+function passwordStrength(p){let score=0;if(/[a-z]/.test(p))score++;if(/[A-Z]/.test(p))score++;if(/\d/.test(p))score++;if(/[!@#$%^&*()_+{}[\]]/.test(p))score++;if(p.length>=12)score++;if(score<=2)return {text:"ضعيفة",percent:25};if(score==3)return {text:"متوسطة",percent:50};if(score==4)return {text:"قوية",percent:75};return {text:"قوية جدًا",percent:100};}
 
-function generatePassword(){const len=Math.max(6,Math.min(64,parseInt(document.getElementById('pwLen').value||16))); const chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]'; let pw=''; for(let i=0;i<len;i++) pw+=chars[Math.floor(Math.random()*chars.length)]; document.getElementById('passwordField').value=pw; const s=passwordStrength(pw); document.getElementById('strength').innerText="قوة كلمة المرور: "+s;}
-function passwordStrength(p){let score=0;if(/[a-z]/.test(p))score++;if(/[A-Z]/.test(p))score++;if(/\d/.test(p))score++;if(/[!@#$%^&*()_+{}[\]]/.test(p))score++;if(p.length>=12)score++;if(score<=2)return "ضعيفة";if(score==3)return "متوسطة";if(score==4)return "قوية";return "قوية جدًا";}
-
-let points = parseInt(localStorage.getItem('points'))||0;
-let badges = JSON.parse(localStorage.getItem('badges'))||[];
+// ===== نقاط ومكافآت =====
+let points=parseInt(localStorage.getItem('points'))||0;
+let badges=JSON.parse(localStorage.getItem('badges'))||[];
 document.getElementById('points').innerText=points;
-function earnPoints(){points++; localStorage.setItem('points',points); document.getElementById('points').innerText=points; checkBadges();}
-function checkBadges(){const badgeEl=document.getElementById('badges'); const levels=[5,10,20,50,100]; levels.forEach(l=>{if(points>=l && !badges.includes(l)){badges.push(l); localStorage.setItem('badges',JSON.stringify(badges)); const b=document.createElement('span'); b.className="badge"; b.innerText=`Badge ${l} نقاط!`; badgeEl.appendChild(b);}});}
+function earnPoints(){points++; localStorage.setItem('points',points); document.getElementById('points').innerText=points; checkBadges(); logActivity(`اكسبت نقطة. مجموع النقاط: ${points}`); updateStats();}
+function checkBadges(){
+  const badgeEl=document.getElementById('badges'); 
+  const levels=[5,10,20,50,100]; 
+  levels.forEach(l=>{if(points>=l && !badges.includes(l)){badges.push(l); localStorage.setItem('badges',JSON.stringify(badges)); const b=document.createElement('span');b.className="badge";b.innerText=`Badge ${l} نقاط!`;badgeEl.appendChild(b);logActivity(`فتح Badge ${l} نقاط!`); confettiEffect();}});}
 checkBadges();
 
-// ====== Parallax Scroll ======
-const parallaxCards=document.querySelectorAll('.parallax'); window.addEventListener('scroll',()=>{parallaxCards.forEach((card,i)=>{const offset=window.scrollY*(0.1+i*0.05); card.style.transform=`translateY(${offset}px)`;});});
+// ===== مهام يومية =====
+const tasks=[
+  {task:"إنشاء كلمة مرور قوية", done:false, points:2},
+  {task:"قراءة نصيحة جديدة", done:false, points:1},
+  {task:"اكسب 5 نقاط", done:false, points:3}
+];
+function showTasks(){const el=document.getElementById('dailyTasks');el.innerHTML="";tasks.forEach((t,i)=>{const btn=document.createElement('button');btn.innerText=t.done?"تم":"أكمل";btn.onclick=()=>{if(!t.done){earnPointsByTask(t.points);t.done=true;showTasks(); updateStats();}};const div=document.createElement('div');div.className="tip";div.innerHTML=`<div class="ico">📌</div><div>${t.task}</div>`;div.appendChild(btn);el.appendChild(div);});}
+function earnPointsByTask(p){points+=p; localStorage.setItem('points',points); document.getElementById('points').innerText=points; checkBadges(); logActivity(`أكملت مهمة يومية وحصلت على ${p} نقاط`);}
+showTasks();
+
+// ===== سجل النشاطات =====
+function logActivity(text){const log=document.getElementById('activityLog');const t=new Date();log.innerHTML=`<div>[${t.getHours()}:${t.getMinutes()}] ${text}</div>`+log.innerHTML;}
+
+// ===== Confetti Effect =====
+function confettiEffect(){for(let i=0;i<30;i++){const conf=document.createElement('div');conf.style.position='fixed';conf.style.width='8px';conf.style.height='8px';conf.style.background=['#00ff9f','#ff00a1','#ffde00'][Math.floor(Math.random()*3)];conf.style.left=Math.random()*window.innerWidth+'px';conf.style.top='-10px';conf.style.opacity=0.8;conf.style.borderRadius='50%';conf.style.zIndex=9999;document.body.appendChild(conf);let drop=setInterval(()=>{conf.style.top=parseFloat(conf.style.top)+Math.random()*6+'px';if(parseFloat(conf.style.top)>window.innerHeight){conf.remove();clearInterval(drop);}},20);}}
+
+// ===== Stats =====
+function updateStats(){
+  document.getElementById('statTips').innerText=usedTips.length;
+  document.getElementById('statPasswords').innerText=passwordCount;
+  document.getElementById('statTasks').innerText=tasks.filter(t=>t.done).length;
+}
+updateStats();
+
+// ===== Parallax Scroll =====
+const parallaxCards=document.querySelectorAll('.card'); window.addEventListener('scroll',()=>{parallaxCards.forEach((card,i)=>{const offset=window.scrollY*(0.1+i*0.05);card.style.transform=`translateY(${offset}px)`;});});
 </script>
 </body>
 </html>
