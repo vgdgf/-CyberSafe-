@@ -3,53 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diplomatic Employee Card</title>
+<title>Ultimate Realistic Diplomatic Card</title>
 <style>
   body {
     font-family: "Garamond", Georgia, serif;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     gap: 30px;
     padding: 20px;
-    background: #e6e6e6;
-  }
-
-  .form-container {
-    width: 320px;
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  }
-
-  .form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: bold;
-  }
-
-  input, button {
-    width: 100%;
-    margin: 8px 0 15px 0;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-  }
-
-  button {
-    background-color: #0b3d91; /* royal blue */
-    color: white;
-    cursor: pointer;
-    border: none;
-    font-weight: bold;
-  }
-
-  button:hover {
-    background-color: #092f6c;
+    background: #e0e0e0;
   }
 
   .card-container {
@@ -57,138 +20,179 @@
   }
 
   .card {
-    width: 480px;
-    height: 300px;
-    background: linear-gradient(135deg, #fdfdfd, #d9e1f2);
-    border-radius: 20px;
-    display: flex;
-    padding: 25px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    width: 520px;
+    height: 340px;
+    background: linear-gradient(135deg, #fefefe, #dbe2f0);
+    border-radius: 25px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    border: 4px solid #0b3d91;
     position: relative;
+    overflow: hidden;
+    padding: 30px;
+    display: flex;
     flex-direction: row;
     gap: 25px;
-    border: 3px solid #0b3d91; /* official border */
-    overflow: hidden;
   }
 
-  /* watermark / official pattern */
+  /* Official watermark */
   .card::before {
     content: "";
     position: absolute;
-    width: 150%;
-    height: 150%;
+    width: 160%;
+    height: 160%;
     background: url('https://i.ibb.co/3y3N9h0/watermark.png') repeat;
-    opacity: 0.05;
+    opacity: 0.1;
     transform: rotate(30deg);
-    top: -25%;
-    left: -25%;
+    top: -30%;
+    left: -30%;
     pointer-events: none;
+  }
+
+  /* Official golden seal */
+  .seal {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 75px;
+    height: 75px;
+    background: radial-gradient(circle at 50% 50%, gold, darkgoldenrod);
+    border-radius: 50%;
+    border: 2px solid #b8860b;
+    box-shadow: 0 0 12px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    transform: rotate(-5deg);
   }
 
   .logo {
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+    transform: translateX(-50%) rotateX(0deg);
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    border: 2px solid gold;
+    border: 3px solid gold;
     background: white;
     padding: 5px;
+    cursor: pointer;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
   }
 
   .employee-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 15px;
-    object-fit: cover;
+    width: 170px;
+    height: 170px;
+    border-radius: 25px;
     border: 3px solid #0b3d91;
+    cursor: pointer;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
   }
 
   .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6px;
-    font-size: 17px;
+    gap: 14px;
+    font-size: 20px;
     color: #0b3d91;
     font-weight: bold;
   }
 
-  #downloadBtn {
-    margin-top: 10px;
-    background-color: #1a5fb4;
-  }
-
-  #downloadBtn:hover {
-    background-color: #154485;
-  }
-
-  .info p span {
-    font-weight: normal;
+  .info span {
+    display: inline-block;
+    min-width: 230px;
+    cursor: text;
     color: #333;
-    margin-left: 5px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  .info span:focus {
+    outline: none;
+    background: rgba(255, 215, 0, 0.25);
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0b3d91;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #092f6c;
+  }
+
+  input[type="file"] {
+    display: none;
   }
 
 </style>
 </head>
 <body>
 
-<div class="form-container">
-  <h2>Diplomatic Employee Card</h2>
-  
-  <input type="text" id="firstName" placeholder="First Name">
-  <input type="text" id="lastName" placeholder="Last Name">
-  <input type="date" id="dob">
-  <input type="text" id="academy" placeholder="Academy / Department">
-  <input type="file" id="employeePhoto" accept="image/*">
-  <input type="file" id="logo" accept="image/*">
-  <button onclick="generateCard()">Generate Card</button>
-  <button id="downloadBtn">Download Card as PNG</button>
-</div>
-
 <div class="card-container">
   <div class="card" id="card">
-    <img id="logoPreview" class="logo" src="" alt="Official Logo">
-    <img id="employeePreview" class="employee-photo" src="" alt="Employee Photo">
+    <img id="logoPreview" class="logo" src="" alt="Official Logo" title="Click to change logo">
+    <img id="employeePreview" class="employee-photo" src="" alt="Employee Photo" title="Click to change photo">
     <div class="info">
-      <p>First Name: <span id="firstNamePreview">John</span></p>
-      <p>Last Name: <span id="lastNamePreview">Doe</span></p>
-      <p>Date of Birth: <span id="dobPreview">01/01/1990</span></p>
-      <p>Academy: <span id="academyPreview">IT Academy</span></p>
+      <p>First Name: <span contenteditable="true" id="firstNamePreview">John</span></p>
+      <p>Last Name: <span contenteditable="true" id="lastNamePreview">Doe</span></p>
+      <p>Date of Birth: <span contenteditable="true" id="dobPreview">01/01/1990</span></p>
+      <p>Academy: <span contenteditable="true" id="academyPreview">IT Academy</span></p>
     </div>
+    <div class="seal">OFFICIAL</div>
   </div>
+
+  <input type="file" id="logoInput" accept="image/*">
+  <input type="file" id="employeeInput" accept="image/*">
+  <button id="downloadBtn">Download Card as PNG</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
-function generateCard() {
-  document.getElementById('firstNamePreview').textContent = document.getElementById('firstName').value || "John";
-  document.getElementById('lastNamePreview').textContent = document.getElementById('lastName').value || "Doe";
-  document.getElementById('dobPreview').textContent = document.getElementById('dob').value || "01/01/1990";
-  document.getElementById('academyPreview').textContent = document.getElementById('academy').value || "IT Academy";
-
-  const employeeFile = document.getElementById('employeePhoto').files[0];
-  const logoFile = document.getElementById('logo').files[0];
-
-  if(employeeFile) {
-    document.getElementById('employeePreview').src = URL.createObjectURL(employeeFile);
-  }
-  if(logoFile) {
-    document.getElementById('logoPreview').src = URL.createObjectURL(logoFile);
-  }
-}
-
-document.getElementById('downloadBtn').addEventListener('click', function() {
-  html2canvas(document.getElementById('card')).then(canvas => {
-    const link = document.createElement('a');
-    link.download = 'diplomatic_card.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+  // Change Logo
+  document.getElementById('logoPreview').addEventListener('click', () => {
+    document.getElementById('logoInput').click();
   });
-});
+  document.getElementById('logoInput').addEventListener('change', (e) => {
+    if(e.target.files[0]){
+      document.getElementById('logoPreview').src = URL.createObjectURL(e.target.files[0]);
+    }
+  });
+
+  // Change Employee Photo
+  document.getElementById('employeePreview').addEventListener('click', () => {
+    document.getElementById('employeeInput').click();
+  });
+  document.getElementById('employeeInput').addEventListener('change', (e) => {
+    if(e.target.files[0]){
+      document.getElementById('employeePreview').src = URL.createObjectURL(e.target.files[0]);
+    }
+  });
+
+  // Download as PNG
+  document.getElementById('downloadBtn').addEventListener('click', function() {
+    html2canvas(document.getElementById('card'), {scale: 2}).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'diplomatic_card.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  });
 </script>
 
 </body>
