@@ -1,93 +1,195 @@
-<!doctype html>
-
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CyberSafe 100.0 Ultimate — مذكّر الأمان السيبراني</title>
-<meta name="description" content="تطبيق ويب متكامل يحتوي على 50 أداة للأمان السيبراني، نقاط ومكافآت، مشاركة الرابط، توليد كلمات مرور، نصائح يومية والمزيد.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23121212'/><text x='50' y='60' font-size='36' text-anchor='middle' fill='%2300ff9f'>🔒</text></svg>">
-<meta name="theme-color" content="#0b1220" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diplomatic Employee Card</title>
 <style>
-  :root{--bg:#07101a;--card:#0f1720;--muted:#98a0a6;--accent:#00ff9f;--glass:rgba(255,255,255,0.04);--glass-2:rgba(255,255,255,0.02);}
-  *{box-sizing:border-box;font-family:'Inter',system-ui,Tahoma,Arial;}
-  html,body{margin:0;padding:0;height:100%;background:linear-gradient(180deg,#061018 0%,#081421 60%);color:#e6eef6;overflow-x:hidden;}
-  h1{text-align:center;font-size:2.5rem;margin:20px 0;color:var(--accent);text-shadow:0 0 15px var(--accent);}
-  .app{max-width:980px;margin:auto;padding:0 10px;}
-  .card{background:linear-gradient(180deg,var(--card),var(--glass-2));padding:25px;border-radius:16px;box-shadow:0 8px 40px rgba(2,6,23,0.6);backdrop-filter: blur(15px);margin-bottom:30px;transition: transform 0.5s, box-shadow 0.5s;position:relative;}
-  .card:hover{transform: translateY(-10px) scale(1.02);box-shadow:0 0 40px var(--accent);}
-  button{background: var(--accent); border:none; padding:12px 25px; border-radius:12px; color:#000; font-weight:bold; cursor:pointer; margin-top:10px; transition: transform 0.3s, box-shadow 0.3s;}
-  button:hover{transform: scale(1.1); box-shadow:0 0 15px var(--accent);}
-  input[type="text"], input[type="number"]{width:100%;padding:12px;margin-top:10px;border-radius:12px;border:none;outline:none;background:rgba(255,255,255,0.04);color:#fff;}
-  .fade-in{opacity:0;animation:fadeIn 1.5s forwards;}
-  @keyframes fadeIn{to{opacity:1;}}
-  .badge{display:inline-block;background:var(--accent);color:#000;padding:7px 15px;border-radius:15px;margin:5px 5px 0 0;font-weight:bold;animation:glow 1.5s infinite alternate;}
-  @keyframes glow{from {box-shadow:0 0 5px var(--accent);} to{box-shadow:0 0 25px var(--accent);}}
-  .parallax{transform: translateY(0px); transition: transform 0.2s;}
-  .tips-list{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
-  .tip{display:flex;gap:12px;align-items:flex-start;}
-  .tip .ico{width:44px;height:44px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;}
-  .muted{color:var(--muted);font-size:13px;}
-  .tool{margin-top:20px;}
-  .tool h2{color:var(--accent);}
+  body {
+    font-family: "Garamond", Georgia, serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    background: #e6e6e6;
+  }
+
+  .form-container {
+    width: 320px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  input, button {
+    width: 100%;
+    margin: 8px 0 15px 0;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  button {
+    background-color: #0b3d91; /* royal blue */
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #092f6c;
+  }
+
+  .card-container {
+    position: relative;
+  }
+
+  .card {
+    width: 480px;
+    height: 300px;
+    background: linear-gradient(135deg, #fdfdfd, #d9e1f2);
+    border-radius: 20px;
+    display: flex;
+    padding: 25px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    position: relative;
+    flex-direction: row;
+    gap: 25px;
+    border: 3px solid #0b3d91; /* official border */
+    overflow: hidden;
+  }
+
+  /* watermark / official pattern */
+  .card::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: url('https://i.ibb.co/3y3N9h0/watermark.png') repeat;
+    opacity: 0.05;
+    transform: rotate(30deg);
+    top: -25%;
+    left: -25%;
+    pointer-events: none;
+  }
+
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid gold;
+    background: white;
+    padding: 5px;
+  }
+
+  .employee-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 3px solid #0b3d91;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    font-size: 17px;
+    color: #0b3d91;
+    font-weight: bold;
+  }
+
+  #downloadBtn {
+    margin-top: 10px;
+    background-color: #1a5fb4;
+  }
+
+  #downloadBtn:hover {
+    background-color: #154485;
+  }
+
+  .info p span {
+    font-weight: normal;
+    color: #333;
+    margin-left: 5px;
+  }
+
 </style>
 </head>
 <body>
-<h1>CyberSafe 100.0 Ultimate</h1>
-<div class="app"><!-- نصائح اليوم --><div class="card fade-in parallax" id="tipCard">
-  <h2>نصيحة اليوم:</h2>
-  <div class="tips-list" id="todayTipArea"></div>
-  <button onclick="nextTip()">نصيحة جديدة</button>
-</div><!-- نظام النقاط والمكافآت --><div class="card fade-in parallax">
-  <h2>نقاطك ومكافآتك</h2>
-  <p>النقاط: <span id="points">0</span></p>
-  <div id="badges"></div>
-  <button onclick="earnPoints()">اكسب نقطة</button>
-  <button onclick="shareLink()">مشاركة الرابط لكسب نقاط</button>
-</div><!-- الأدوات المتقدمة (50 أداة) --><div class="card fade-in parallax">
-  <h2>أدوات CyberSafe</h2>
-  <div id="tools"></div>
-</div></div><script>
-// ====== نصائح اليوم ======
-const tips=[
-  {title:'تحقق من رابط مختصر قبل فتحه',body:'اضغط على الرابط مطولاً أو استخدم خدمة معاينة لرؤية الرابط الكامل.'},
-  {title:'فعّل المصادقة الثنائية',body:'استخدم تطبيق مصادقة أو رسالة SMS لحماية حساباتك المهمة.'},
-  {title:'لا تشارك كلمات المرور',body:'لا تشارك كلمات المرور عبر رسائل أو منصات عامة.'},
-  {title:'استخدم كلمات مرور طويلة',body:'اختر كلمات مرور من 12 حرفاً على الأقل.'},
-  {title:'حدّث تطبيقاتك ونظام التشغيل',body:'التحديثات تُغلق ثغرات قد يستغلها القراصنة.'}
-];
-let usedTips=JSON.parse(localStorage.getItem('usedTips'))||[];
-function todayKey(){const d=new Date();return `cybersafe_tip_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;}
-function showTip(){const stored=localStorage.getItem(todayKey()); let tipIndex;if(stored!==null){tipIndex=parseInt(stored);}else{tipIndex=Math.floor(Math.random()*tips.length);localStorage.setItem(todayKey(),tipIndex);} const tip=tips[tipIndex]; document.getElementById('todayTipArea').innerHTML=`<div class='tip'><div class='ico'>🔰</div><div><h3>${tip.title}</h3><div class='muted'>${tip.body}</div></div></div>`;}
-function nextTip(){let available=tips.filter((_,i)=>!usedTips.includes(i)); if(available.length===0){usedTips=[]; available=tips;} let index=tips.indexOf(available[Math.floor(Math.random()*available.length)]); usedTips.push(index); localStorage.setItem('usedTips',JSON.stringify(usedTips)); showTip();}
-showTip();
 
-// ====== نظام النقاط والمكافآت ======
-let points=parseInt(localStorage.getItem('points'))||0;
-let badges=JSON.parse(localStorage.getItem('badges'))||[];
-document.getElementById('points').innerText=points;
-function earnPoints(){points++; localStorage.setItem('points',points); document.getElementById('points').innerText=points; checkBadges();}
-function shareLink(){alert('تم نسخ الرابط! شاركه لكسب 5 نقاط.'); points+=5; localStorage.setItem('points',points); document.getElementById('points').innerText=points; checkBadges();}
-function checkBadges(){const badgeEl=document.getElementById('badges'); const levels=[5,10,20,50,100,150,200,300,500,1000]; levels.forEach(l=>{if(points>=l && !badges.includes(l)){badges.push(l); localStorage.setItem('badges',JSON.stringify(badges)); const b=document.createElement('span'); b.className='badge'; b.innerText=`Badge ${l} نقاط!`; badgeEl.appendChild(b);}});}
-checkBadges();
+<div class="form-container">
+  <h2>Diplomatic Employee Card</h2>
+  
+  <input type="text" id="firstName" placeholder="First Name">
+  <input type="text" id="lastName" placeholder="Last Name">
+  <input type="date" id="dob">
+  <input type="text" id="academy" placeholder="Academy / Department">
+  <input type="file" id="employeePhoto" accept="image/*">
+  <input type="file" id="logo" accept="image/*">
+  <button onclick="generateCard()">Generate Card</button>
+  <button id="downloadBtn">Download Card as PNG</button>
+</div>
 
-// ====== الأدوات المتقدمة (50 أداة) ======
-const toolsContainer=document.getElementById('tools');
-const tools=[];
-for(let i=1;i<=50;i++){
-  tools.push({name:`أداة ${i}`,desc:`وظيفة الأداة ${i}، تغطي احتياجات مختلفة للمستخدمين.`,points:Math.floor(Math.random()*50)+1});
+<div class="card-container">
+  <div class="card" id="card">
+    <img id="logoPreview" class="logo" src="" alt="Official Logo">
+    <img id="employeePreview" class="employee-photo" src="" alt="Employee Photo">
+    <div class="info">
+      <p>First Name: <span id="firstNamePreview">John</span></p>
+      <p>Last Name: <span id="lastNamePreview">Doe</span></p>
+      <p>Date of Birth: <span id="dobPreview">01/01/1990</span></p>
+      <p>Academy: <span id="academyPreview">IT Academy</span></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+function generateCard() {
+  document.getElementById('firstNamePreview').textContent = document.getElementById('firstName').value || "John";
+  document.getElementById('lastNamePreview').textContent = document.getElementById('lastName').value || "Doe";
+  document.getElementById('dobPreview').textContent = document.getElementById('dob').value || "01/01/1990";
+  document.getElementById('academyPreview').textContent = document.getElementById('academy').value || "IT Academy";
+
+  const employeeFile = document.getElementById('employeePhoto').files[0];
+  const logoFile = document.getElementById('logo').files[0];
+
+  if(employeeFile) {
+    document.getElementById('employeePreview').src = URL.createObjectURL(employeeFile);
+  }
+  if(logoFile) {
+    document.getElementById('logoPreview').src = URL.createObjectURL(logoFile);
+  }
 }
-function renderTools(){toolsContainer.innerHTML='';
-  tools.forEach((tool,i)=>{
-    const t=document.createElement('div'); t.className='tool';
-    t.innerHTML=`<h2>${tool.name}</h2><p>${tool.desc}</p><button onclick='useTool(${i})'>استخدام الأداة (تحتاج ${tool.points} نقاط)</button>`;
-    toolsContainer.appendChild(t);
+
+document.getElementById('downloadBtn').addEventListener('click', function() {
+  html2canvas(document.getElementById('card')).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'diplomatic_card.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   });
-}
-function useTool(i){if(points>=tools[i].points){alert(`تم استخدام ${tools[i].name}!`); points-=tools[i].points; localStorage.setItem('points',points); document.getElementById('points').innerText=points; checkBadges();}else{alert('ليس لديك نقاط كافية لاستخدام هذه الأداة.');}}
-renderTools();
+});
+</script>
 
-// ====== Parallax ======
-const parallaxCards=document.querySelectorAll('.parallax'); window.addEventListener('scroll',()=>{parallaxCards.forEach((card,i)=>{const offset=window.scrollY*(0.1+i*0.05); card.style.transform=`translateY(${offset}px)`;});});
-</script></body>
+</body>
 </html>
