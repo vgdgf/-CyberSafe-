@@ -3,42 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Realistic ID Card Generator</title>
-<link href="https://fonts.googleapis.com/css2?family=Garamond&display=swap" rel="stylesheet">
+<title>Luxury ID Card Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body {
   font-family: 'Garamond', serif;
-  background: #ececec;
+  background: #e0e0e0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 5px;
-  color: #222;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  font-weight: 700;
 }
 
 #card-container {
   position: relative;
   width: 540px;
   height: 340px;
-  border-radius: 15px;
-  background: linear-gradient(to right, #f0f0f5, #d9d9e0);
-  border: 2px solid #ccc;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  border-radius: 25px;
+  background: linear-gradient(145deg, #f8f8f9, #dcdce6);
+  border: 2px solid #bfae7f;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
   overflow: hidden;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
 }
 
-/* Watermark */
+/* Luxury Watermark */
 #card-container::before {
-  content: "UNIVERSITY";
+  content: "OFFICIAL";
   position: absolute;
-  font-size: 100px;
+  font-size: 110px;
+  font-weight: 900;
   color: rgba(0,0,0,0.05);
   top: 50%;
   left: 50%;
@@ -46,81 +48,90 @@ h1 {
   pointer-events: none;
 }
 
-/* Card text */
+/* Card Text Section */
 #card-text {
   position: absolute;
-  left: 20px;
-  top: 20px;
-  font-size: 16px;
-  color: #000;
+  left: 30px;
+  top: 30px;
+  font-size: 17px;
+  color: #1a1a1a;
 }
 
 #card-text div {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-/* Employee photo */
+/* Employee Photo */
 #photo {
   position: absolute;
-  right: 20px;
+  right: 30px;
   top: 50px;
-  width: 120px;
-  height: 160px;
-  border-radius: 10px;
-  border: 2px solid #555;
+  width: 130px;
+  height: 180px;
+  border-radius: 15px;
+  border: 2px solid #bfae7f;
   object-fit: cover;
   background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* Small ID photo */
+/* Small ID Photo */
 #small-photo {
   position: absolute;
-  left: 20px;
-  top: 120px;
-  width: 60px;
-  height: 60px;
-  border-radius: 5px;
-  border: 1px solid #555;
+  left: 30px;
+  top: 150px;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  border: 1.5px solid #bfae7f;
   object-fit: cover;
   background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Signature line */
+/* Signature Line */
 #signature {
   position: absolute;
-  bottom: 30px;
-  left: 20px;
+  bottom: 35px;
+  left: 30px;
   font-style: italic;
   font-size: 18px;
-  border-bottom: 1px solid #000;
-  width: 200px;
+  border-bottom: 2px solid #bfae7f;
+  width: 220px;
+  padding-bottom: 3px;
+  color: #1a1a1a;
 }
 
 /* Expiration */
 #expires {
   position: absolute;
-  bottom: 30px;
-  right: 20px;
-  color: red;
+  bottom: 35px;
+  right: 30px;
+  color: #c00000;
   font-weight: bold;
+  font-size: 16px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-/* Form panel */
+/* Control Panel */
 #control-panel {
   width: 540px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 #control-panel label {
   font-weight: bold;
+  color: #222;
 }
 
 #control-panel input {
-  padding: 5px;
-  font-size: 14px;
+  padding: 6px;
+  font-size: 15px;
   width: 100%;
+  border-radius: 5px;
+  border: 1px solid #aaa;
 }
 
 #control-panel input[type="file"] {
@@ -129,18 +140,24 @@ h1 {
 
 #download-btn {
   margin-top: 15px;
-  padding: 10px 20px;
-  background: #2d89ef;
+  padding: 12px 25px;
+  background: linear-gradient(to right, #d4af37, #bfae7f);
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+#download-btn:hover {
+  transform: scale(1.05);
 }
 </style>
 </head>
 <body>
 
-<h1>Realistic ID Card Generator</h1>
+<h1>Luxury ID Card Generator</h1>
 
 <div id="card-container">
   <div id="card-text">
@@ -150,8 +167,8 @@ h1 {
     <div><strong>Date Issued:</strong> <span id="card-issued">08-31-2015</span></div>
   </div>
 
-  <img id="photo" src="https://via.placeholder.com/120x160?text=Photo" alt="Photo">
-  <img id="small-photo" src="https://via.placeholder.com/60x60?text=Photo" alt="Small Photo">
+  <img id="photo" src="https://via.placeholder.com/130x180?text=Photo" alt="Photo">
+  <img id="small-photo" src="https://via.placeholder.com/70x70?text=Photo" alt="Small Photo">
 
   <div id="signature">John Smithon</div>
   <div id="expires">EXPIRES: 12-31-2017</div>
