@@ -3,176 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxury Diplomatic ID Card Generator</title>
-<!-- Google Fonts -->
+<title>Hyper-Realistic Diplomatic ID Generator</title>
 <link href="https://fonts.googleapis.com/css2?family=Garamond&display=swap" rel="stylesheet">
 <style>
-  body {
-    font-family: 'Garamond', serif;
-    background: #f2f2f2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
+body {
+  font-family: 'Garamond', serif;
+  background: #ececec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
-  h1 {
-    margin-bottom: 10px;
-    text-align: center;
-    color: #333;
-  }
+h1 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 5px;
+}
 
-  #instructions {
-    margin-bottom: 20px;
-    font-size: 16px;
-    text-align: center;
-    color: #555;
-  }
+#instructions {
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: #555;
+}
 
+#card-container {
+  position: relative;
+  width: 540px;
+  height: 340px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #f5f5f5, #dcdcdc);
+  border: 6px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #d4af37, #ffd700, #d4af37);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+  overflow: hidden;
+  padding: 20px;
+  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0 1px, transparent 1px 10px);
+}
+
+/* Watermark pattern */
+#card-container::before {
+  content: "GOVERNMENT ID";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 110px;
+  color: rgba(200,200,200,0.08);
+  transform: translate(-50%, -50%) rotate(-25deg);
+  pointer-events: none;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+/* Logo */
+#logo {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ffd700;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5), inset 0 2px 8px rgba(255,255,255,0.3);
+  cursor: pointer;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* Employee photo */
+#photo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 160px;
+  border-radius: 15px;
+  border: 4px solid #ffd700;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 2px 6px rgba(255,255,255,0.3);
+  cursor: pointer;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* Official seal */
+#seal {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top left, #ffd700, #d4af37);
+  text-align: center;
+  line-height: 60px;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.4);
+  font-size: 12px;
+  user-select: none;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Information */
+#info {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  color: #b8860b;
+  max-width: 300px;
+}
+
+#info div {
+  margin: 10px 0;
+  font-size: 20px;
+  cursor: text;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  background: linear-gradient(to right, #ffd700, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  padding: 2px 0;
+}
+
+/* Buttons */
+#download-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(to right, #ffd700, #d4af37);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  transition: 0.3s;
+}
+
+#download-btn:hover {
+  transform: scale(1.05);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+@media (max-width: 600px) {
   #card-container {
-    position: relative;
-    width: 540px;
-    height: 340px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #e0e0e0, #f8f8f8);
-    border: 5px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #d4af37, #ffd700, #d4af37);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    overflow: hidden;
-    padding: 20px;
+    width: 90%;
+    height: auto;
+    padding: 15px;
   }
-
-  /* Watermark */
-  #card-container::before {
-    content: "GOVERNMENT";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 100px;
-    color: rgba(200,200,200,0.1);
-    transform: translate(-50%, -50%) rotate(-30deg);
-    pointer-events: none;
-    font-weight: bold;
-  }
-
-  #logo {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid gold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    cursor: pointer;
-    object-fit: cover;
-    background: #fff;
-  }
-
-  #photo {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 120px;
-    height: 160px;
-    border-radius: 15px;
-    border: 3px solid gold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    cursor: pointer;
-    object-fit: cover;
-    background: #fff;
-  }
-
-  #seal {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: radial-gradient(circle at top left, #ffd700, #d4af37);
-    text-align: center;
-    line-height: 60px;
-    font-weight: bold;
-    color: #fff;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.4);
-    font-size: 12px;
-    user-select: none;
-  }
-
-  #info {
-    position: absolute;
-    top: 50%;
-    left: 30px;
-    transform: translateY(-50%);
-    color: #b8860b;
-  }
-
-  #info div {
-    margin: 10px 0;
-    font-size: 20px;
-    cursor: text;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  }
-
-  #download-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: linear-gradient(to right, #ffd700, #d4af37);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: 0.3s;
-  }
-
-  #download-btn:hover {
-    transform: scale(1.05);
-  }
-
-  input[type="file"] {
-    display: none;
-  }
-
-  @media (max-width: 600px) {
-    #card-container {
-      width: 90%;
-      height: auto;
-      padding: 15px;
-    }
-    #photo {
-      width: 90px;
-      height: 120px;
-    }
-    #logo {
-      width: 60px;
-      height: 60px;
-    }
-    #seal {
-      width: 50px;
-      height: 50px;
-      line-height: 50px;
-      font-size: 10px;
-    }
-    #info div {
-      font-size: 16px;
-    }
-  }
+  #photo { width: 90px; height: 120px; }
+  #logo { width: 60px; height: 60px; }
+  #seal { width: 50px; height: 50px; line-height: 50px; font-size: 10px; }
+  #info div { font-size: 16px; }
+}
 </style>
 </head>
 <body>
 
-<h1>Luxury Diplomatic ID Card Generator</h1>
-<div id="instructions">Click on the logo or photo to upload images. Click on text fields to edit details.</div>
+<h1>Hyper-Realistic Diplomatic ID Card</h1>
+<div id="instructions">Click on the logo/photo to upload. Click on text to edit details. Preview updates instantly.</div>
 
 <div id="card-container">
   <img id="logo" src="https://via.placeholder.com/80x80?text=Logo" alt="Logo">
   <input type="file" id="logo-upload" accept="image/*">
-  
+
   <img id="photo" src="https://via.placeholder.com/120x160?text=Photo" alt="Employee Photo">
   <input type="file" id="photo-upload" accept="image/*">
 
@@ -186,47 +186,39 @@
   </div>
 </div>
 
-<button id="download-btn">Download Card as High-Resolution PNG</button>
+<button id="download-btn">Download Card as PNG</button>
 
-<!-- html2canvas library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <script>
-  const logo = document.getElementById('logo');
-  const photo = document.getElementById('photo');
-  const logoUpload = document.getElementById('logo-upload');
-  const photoUpload = document.getElementById('photo-upload');
-  const downloadBtn = document.getElementById('download-btn');
-  const cardContainer = document.getElementById('card-container');
+const logo = document.getElementById('logo');
+const photo = document.getElementById('photo');
+const logoUpload = document.getElementById('logo-upload');
+const photoUpload = document.getElementById('photo-upload');
+const downloadBtn = document.getElementById('download-btn');
+const cardContainer = document.getElementById('card-container');
 
-  // Logo upload
-  logo.addEventListener('click', () => logoUpload.click());
-  logoUpload.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if(file){
-      logo.src = URL.createObjectURL(file);
-    }
-  });
+// Upload handlers
+logo.addEventListener('click', () => logoUpload.click());
+logoUpload.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(file) logo.src = URL.createObjectURL(file);
+});
 
-  // Photo upload
-  photo.addEventListener('click', () => photoUpload.click());
-  photoUpload.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if(file){
-      photo.src = URL.createObjectURL(file);
-    }
-  });
+photo.addEventListener('click', () => photoUpload.click());
+photoUpload.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(file) photo.src = URL.createObjectURL(file);
+});
 
-  // Download functionality
-  downloadBtn.addEventListener('click', () => {
-    html2canvas(cardContainer, {scale: 3}).then(canvas => {
-      const link = document.createElement('a');
-      link.download = 'luxury_id_card.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
+// Download
+downloadBtn.addEventListener('click', () => {
+  html2canvas(cardContainer, {scale: 4, useCORS:true}).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'diplomatic_id_card.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   });
+});
 </script>
-
 </body>
 </html>
