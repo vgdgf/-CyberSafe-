@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hyper-Realistic Diplomatic ID Generator</title>
+<title>Realistic ID Card Generator</title>
 <link href="https://fonts.googleapis.com/css2?family=Garamond&display=swap" rel="stylesheet">
 <style>
 body {
@@ -17,208 +17,215 @@ body {
 
 h1 {
   text-align: center;
-  color: #222;
   margin-bottom: 5px;
-}
-
-#instructions {
-  margin-bottom: 20px;
-  font-size: 16px;
-  text-align: center;
-  color: #555;
+  color: #222;
 }
 
 #card-container {
   position: relative;
   width: 540px;
   height: 340px;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #f5f5f5, #dcdcdc);
-  border: 6px solid;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to right, #d4af37, #ffd700, #d4af37);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+  border-radius: 15px;
+  background: linear-gradient(to right, #f0f0f5, #d9d9e0);
+  border: 2px solid #ccc;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   overflow: hidden;
   padding: 20px;
-  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0 1px, transparent 1px 10px);
+  margin-bottom: 20px;
 }
 
-/* Watermark pattern */
+/* Watermark */
 #card-container::before {
-  content: "GOVERNMENT ID";
+  content: "UNIVERSITY";
   position: absolute;
+  font-size: 100px;
+  color: rgba(0,0,0,0.05);
   top: 50%;
   left: 50%;
-  font-size: 110px;
-  color: rgba(200,200,200,0.08);
-  transform: translate(-50%, -50%) rotate(-25deg);
+  transform: translate(-50%, -50%) rotate(-30deg);
   pointer-events: none;
-  font-weight: bold;
-  letter-spacing: 10px;
 }
 
-/* Logo */
-#logo {
+/* Card text */
+#card-text {
   position: absolute;
+  left: 20px;
   top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 4px solid #ffd700;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5), inset 0 2px 8px rgba(255,255,255,0.3);
-  cursor: pointer;
-  object-fit: cover;
-  background: #fff;
+  font-size: 16px;
+  color: #000;
+}
+
+#card-text div {
+  margin-bottom: 8px;
 }
 
 /* Employee photo */
 #photo {
   position: absolute;
-  top: 20px;
   right: 20px;
+  top: 50px;
   width: 120px;
   height: 160px;
-  border-radius: 15px;
-  border: 4px solid #ffd700;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 2px 6px rgba(255,255,255,0.3);
-  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #555;
   object-fit: cover;
   background: #fff;
 }
 
-/* Official seal */
-#seal {
+/* Small ID photo */
+#small-photo {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  left: 20px;
+  top: 120px;
   width: 60px;
   height: 60px;
-  border-radius: 50%;
-  background: radial-gradient(circle at top left, #ffd700, #d4af37);
-  text-align: center;
-  line-height: 60px;
-  font-weight: bold;
-  color: #fff;
-  box-shadow: inset 0 3px 6px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.4);
-  font-size: 12px;
-  user-select: none;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  border-radius: 5px;
+  border: 1px solid #555;
+  object-fit: cover;
+  background: #fff;
 }
 
-/* Information */
-#info {
+/* Signature line */
+#signature {
   position: absolute;
-  top: 50%;
-  left: 30px;
-  transform: translateY(-50%);
-  color: #b8860b;
-  max-width: 300px;
+  bottom: 30px;
+  left: 20px;
+  font-style: italic;
+  font-size: 18px;
+  border-bottom: 1px solid #000;
+  width: 200px;
 }
 
-#info div {
-  margin: 10px 0;
-  font-size: 20px;
-  cursor: text;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  background: linear-gradient(to right, #ffd700, #d4af37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Expiration */
+#expires {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  color: red;
   font-weight: bold;
-  padding: 2px 0;
 }
 
-/* Buttons */
+/* Form panel */
+#control-panel {
+  width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#control-panel label {
+  font-weight: bold;
+}
+
+#control-panel input {
+  padding: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+#control-panel input[type="file"] {
+  padding: 3px;
+}
+
 #download-btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: linear-gradient(to right, #ffd700, #d4af37);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #2d89ef;
   color: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-  transition: 0.3s;
-}
-
-#download-btn:hover {
-  transform: scale(1.05);
-}
-
-input[type="file"] {
-  display: none;
-}
-
-@media (max-width: 600px) {
-  #card-container {
-    width: 90%;
-    height: auto;
-    padding: 15px;
-  }
-  #photo { width: 90px; height: 120px; }
-  #logo { width: 60px; height: 60px; }
-  #seal { width: 50px; height: 50px; line-height: 50px; font-size: 10px; }
-  #info div { font-size: 16px; }
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>
 </head>
 <body>
 
-<h1>Hyper-Realistic Diplomatic ID Card</h1>
-<div id="instructions">Click on the logo/photo to upload. Click on text to edit details. Preview updates instantly.</div>
+<h1>Realistic ID Card Generator</h1>
 
 <div id="card-container">
-  <img id="logo" src="https://via.placeholder.com/80x80?text=Logo" alt="Logo">
-  <input type="file" id="logo-upload" accept="image/*">
-
-  <img id="photo" src="https://via.placeholder.com/120x160?text=Photo" alt="Employee Photo">
-  <input type="file" id="photo-upload" accept="image/*">
-
-  <div id="seal">OFFICIAL</div>
-
-  <div id="info">
-    <div contenteditable="true" id="first-name">First Name</div>
-    <div contenteditable="true" id="last-name">Last Name</div>
-    <div contenteditable="true" id="dob">Date of Birth</div>
-    <div contenteditable="true" id="academy">Academy / Institution</div>
+  <div id="card-text">
+    <div><strong>Name:</strong> <span id="card-name">John Smithon</span></div>
+    <div><strong>ID Number:</strong> <span id="card-id">263.7487.1278B</span></div>
+    <div><strong>Date of Birth:</strong> <span id="card-dob">10-10-1987</span></div>
+    <div><strong>Date Issued:</strong> <span id="card-issued">08-31-2015</span></div>
   </div>
+
+  <img id="photo" src="https://via.placeholder.com/120x160?text=Photo" alt="Photo">
+  <img id="small-photo" src="https://via.placeholder.com/60x60?text=Photo" alt="Small Photo">
+
+  <div id="signature">John Smithon</div>
+  <div id="expires">EXPIRES: 12-31-2017</div>
 </div>
 
-<button id="download-btn">Download Card as PNG</button>
+<div id="control-panel">
+  <label>Full Name:</label>
+  <input type="text" id="input-name" value="John Smithon">
+
+  <label>ID Number:</label>
+  <input type="text" id="input-id" value="263.7487.1278B">
+
+  <label>Date of Birth:</label>
+  <input type="date" id="input-dob" value="1987-10-10">
+
+  <label>Date Issued:</label>
+  <input type="date" id="input-issued" value="2015-08-31">
+
+  <label>Signature:</label>
+  <input type="text" id="input-signature" value="John Smithon">
+
+  <label>Expiration Date:</label>
+  <input type="date" id="input-expires" value="2017-12-31">
+
+  <label>Upload Photo:</label>
+  <input type="file" id="input-photo" accept="image/*">
+
+  <button id="download-btn">Download Card as PNG</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-const logo = document.getElementById('logo');
+const cardName = document.getElementById('card-name');
+const cardID = document.getElementById('card-id');
+const cardDOB = document.getElementById('card-dob');
+const cardIssued = document.getElementById('card-issued');
+const signature = document.getElementById('signature');
+const expires = document.getElementById('expires');
 const photo = document.getElementById('photo');
-const logoUpload = document.getElementById('logo-upload');
-const photoUpload = document.getElementById('photo-upload');
-const downloadBtn = document.getElementById('download-btn');
-const cardContainer = document.getElementById('card-container');
+const smallPhoto = document.getElementById('small-photo');
 
-// Upload handlers
-logo.addEventListener('click', () => logoUpload.click());
-logoUpload.addEventListener('change', e => {
-  const file = e.target.files[0];
-  if(file) logo.src = URL.createObjectURL(file);
+document.getElementById('input-name').addEventListener('input', e => {
+  cardName.textContent = e.target.value;
+  signature.textContent = e.target.value;
+});
+document.getElementById('input-id').addEventListener('input', e => cardID.textContent = e.target.value);
+document.getElementById('input-dob').addEventListener('input', e => cardDOB.textContent = e.target.value);
+document.getElementById('input-issued').addEventListener('input', e => cardIssued.textContent = e.target.value);
+document.getElementById('input-signature').addEventListener('input', e => signature.textContent = e.target.value);
+document.getElementById('input-expires').addEventListener('input', e => {
+  const d = new Date(e.target.value);
+  expires.textContent = "EXPIRES: " + (d.getMonth()+1).toString().padStart(2,'0') + '-' + d.getDate().toString().padStart(2,'0') + '-' + d.getFullYear();
 });
 
-photo.addEventListener('click', () => photoUpload.click());
-photoUpload.addEventListener('change', e => {
+// Photo upload
+document.getElementById('input-photo').addEventListener('change', e => {
   const file = e.target.files[0];
-  if(file) photo.src = URL.createObjectURL(file);
+  if(file){
+    const url = URL.createObjectURL(file);
+    photo.src = url;
+    smallPhoto.src = url;
+  }
 });
 
-// Download
-downloadBtn.addEventListener('click', () => {
-  html2canvas(cardContainer, {scale: 4, useCORS:true}).then(canvas => {
+// Download card
+document.getElementById('download-btn').addEventListener('click', () => {
+  html2canvas(document.getElementById('card-container'), {scale:3}).then(canvas => {
     const link = document.createElement('a');
-    link.download = 'diplomatic_id_card.png';
-    link.href = canvas.toDataURL('image/png');
+    link.download = 'id_card.png';
+    link.href = canvas.toDataURL();
     link.click();
   });
 });
 </script>
+
 </body>
 </html>
