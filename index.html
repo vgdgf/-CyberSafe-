@@ -3,196 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxury Diplomatic Card</title>
+<title>Luxury Diplomatic ID Card Generator</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Garamond&display=swap" rel="stylesheet">
 <style>
   body {
-    font-family: "Garamond", Georgia, serif;
-    background: #c0c0c0;
+    font-family: 'Garamond', serif;
+    background: #f2f2f2;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    padding: 20px;
   }
 
-  .card-container {
+  h1 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+  }
+
+  #instructions {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+  }
+
+  #card-container {
     position: relative;
     width: 540px;
     height: 340px;
-  }
-
-  .card {
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #fdfdfd, #dbe0f5);
-    border: 5px solid #0b3d91;
-    box-shadow: 0 0 50px rgba(0,0,0,0.6);
-    position: relative;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #e0e0e0, #f8f8f8);
+    border: 5px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #d4af37, #ffd700, #d4af37);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    padding: 25px;
+    padding: 20px;
   }
 
-  /* Official watermark */
-  .card::before {
-    content: "";
+  /* Watermark */
+  #card-container::before {
+    content: "GOVERNMENT";
     position: absolute;
-    width: 160%;
-    height: 160%;
-    background: url('https://i.ibb.co/3y3N9h0/watermark.png') repeat;
-    opacity: 0.15;
-    transform: rotate(30deg);
-    top: -30%;
-    left: -30%;
+    top: 50%;
+    left: 50%;
+    font-size: 100px;
+    color: rgba(200,200,200,0.1);
+    transform: translate(-50%, -50%) rotate(-30deg);
     pointer-events: none;
+    font-weight: bold;
   }
 
-  /* Golden logo at top center */
-  .logo {
+  #logo {
     position: absolute;
-    top: 15px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 4px solid gold;
-    background: white;
-    object-fit: contain;
+    border: 3px solid gold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     cursor: pointer;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
-  }
-
-  /* Employee photo */
-  .employee-photo {
-    width: 160px;
-    height: 200px;
-    border-radius: 20px;
-    border: 3px solid #0b3d91;
     object-fit: cover;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
-    cursor: pointer;
+    background: #fff;
   }
 
-  /* Seal */
-  .seal {
+  #photo {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 75px;
-    height: 75px;
-    background: radial-gradient(circle at 50% 50%, gold, darkgoldenrod);
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 160px;
+    border-radius: 15px;
+    border: 3px solid gold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    object-fit: cover;
+    background: #fff;
+  }
+
+  #seal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    border: 2px solid #b8860b;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: radial-gradient(circle at top left, #ffd700, #d4af37);
+    text-align: center;
+    line-height: 60px;
     font-weight: bold;
-    color: white;
-    font-size: 18px;
-    transform: rotate(-5deg);
+    color: #fff;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.4);
+    font-size: 12px;
+    user-select: none;
   }
 
-  /* Info section */
-  .info {
-    margin-left: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
+  #info {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    color: #b8860b;
+  }
+
+  #info div {
+    margin: 10px 0;
     font-size: 20px;
-    color: #0b3d91;
-    font-weight: bold;
-  }
-
-  .info span {
-    display: inline-block;
     cursor: text;
-    color: #333;
-    padding: 3px 6px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 
-  .info span:focus {
-    outline: none;
-    background: rgba(255,215,0,0.25);
-    color: #000;
-  }
-
-  button {
+  #download-btn {
     margin-top: 20px;
-    padding: 12px 20px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #ffd700, #d4af37);
     border: none;
-    border-radius: 8px;
-    background-color: #0b3d91;
-    color: white;
-    font-weight: bold;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
   }
 
-  button:hover {
-    background-color: #092f6c;
+  #download-btn:hover {
+    transform: scale(1.05);
   }
 
   input[type="file"] {
     display: none;
   }
 
+  @media (max-width: 600px) {
+    #card-container {
+      width: 90%;
+      height: auto;
+      padding: 15px;
+    }
+    #photo {
+      width: 90px;
+      height: 120px;
+    }
+    #logo {
+      width: 60px;
+      height: 60px;
+    }
+    #seal {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 10px;
+    }
+    #info div {
+      font-size: 16px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<div class="card-container">
-  <div class="card" id="card">
-    <img id="logoPreview" class="logo" src="" alt="Official Logo" title="Click to change logo">
-    <div style="display:flex; flex-direction: column; gap: 15px;">
-      <img id="employeePreview" class="employee-photo" src="" alt="Employee Photo" title="Click to change photo">
-    </div>
-    <div class="info">
-      <p>First Name: <span contenteditable="true" id="firstNamePreview">John</span></p>
-      <p>Last Name: <span contenteditable="true" id="lastNamePreview">Doe</span></p>
-      <p>Date of Birth: <span contenteditable="true" id="dobPreview">01/01/1990</span></p>
-      <p>Academy: <span contenteditable="true" id="academyPreview">IT Academy</span></p>
-    </div>
-    <div class="seal">OFFICIAL</div>
-  </div>
+<h1>Luxury Diplomatic ID Card Generator</h1>
+<div id="instructions">Click on the logo or photo to upload images. Click on text fields to edit details.</div>
 
-  <input type="file" id="logoInput" accept="image/*">
-  <input type="file" id="employeeInput" accept="image/*">
-  <button id="downloadBtn">Download Card as PNG</button>
+<div id="card-container">
+  <img id="logo" src="https://via.placeholder.com/80x80?text=Logo" alt="Logo">
+  <input type="file" id="logo-upload" accept="image/*">
+  
+  <img id="photo" src="https://via.placeholder.com/120x160?text=Photo" alt="Employee Photo">
+  <input type="file" id="photo-upload" accept="image/*">
+
+  <div id="seal">OFFICIAL</div>
+
+  <div id="info">
+    <div contenteditable="true" id="first-name">First Name</div>
+    <div contenteditable="true" id="last-name">Last Name</div>
+    <div contenteditable="true" id="dob">Date of Birth</div>
+    <div contenteditable="true" id="academy">Academy / Institution</div>
+  </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<button id="download-btn">Download Card as High-Resolution PNG</button>
+
+<!-- html2canvas library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script>
-  // Logo change
-  document.getElementById('logoPreview').addEventListener('click', () => {
-    document.getElementById('logoInput').click();
-  });
-  document.getElementById('logoInput').addEventListener('change', (e) => {
-    if(e.target.files[0]){
-      document.getElementById('logoPreview').src = URL.createObjectURL(e.target.files[0]);
+  const logo = document.getElementById('logo');
+  const photo = document.getElementById('photo');
+  const logoUpload = document.getElementById('logo-upload');
+  const photoUpload = document.getElementById('photo-upload');
+  const downloadBtn = document.getElementById('download-btn');
+  const cardContainer = document.getElementById('card-container');
+
+  // Logo upload
+  logo.addEventListener('click', () => logoUpload.click());
+  logoUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(file){
+      logo.src = URL.createObjectURL(file);
     }
   });
 
-  // Employee photo change
-  document.getElementById('employeePreview').addEventListener('click', () => {
-    document.getElementById('employeeInput').click();
-  });
-  document.getElementById('employeeInput').addEventListener('change', (e) => {
-    if(e.target.files[0]){
-      document.getElementById('employeePreview').src = URL.createObjectURL(e.target.files[0]);
+  // Photo upload
+  photo.addEventListener('click', () => photoUpload.click());
+  photoUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(file){
+      photo.src = URL.createObjectURL(file);
     }
   });
 
-  // Download
-  document.getElementById('downloadBtn').addEventListener('click', () => {
-    html2canvas(document.getElementById('card'), {scale: 2}).then(canvas => {
+  // Download functionality
+  downloadBtn.addEventListener('click', () => {
+    html2canvas(cardContainer, {scale: 3}).then(canvas => {
       const link = document.createElement('a');
-      link.download = 'luxury_diplomatic_card.png';
+      link.download = 'luxury_id_card.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
