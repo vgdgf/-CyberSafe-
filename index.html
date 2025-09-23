@@ -3,35 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Realistic Diplomatic Card</title>
+<title>Luxury Diplomatic Card</title>
 <style>
   body {
     font-family: "Garamond", Georgia, serif;
+    background: #c0c0c0;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
-    padding: 20px;
-    background: #e0e0e0;
+    align-items: center;
+    height: 100vh;
   }
 
   .card-container {
     position: relative;
+    width: 540px;
+    height: 340px;
   }
 
   .card {
-    width: 520px;
-    height: 340px;
-    background: linear-gradient(135deg, #fefefe, #dbe2f0);
+    width: 100%;
+    height: 100%;
     border-radius: 25px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.6);
-    border: 4px solid #0b3d91;
+    background: linear-gradient(135deg, #fdfdfd, #dbe0f5);
+    border: 5px solid #0b3d91;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
     position: relative;
     overflow: hidden;
-    padding: 30px;
     display: flex;
     flex-direction: row;
-    gap: 25px;
+    padding: 25px;
   }
 
   /* Official watermark */
@@ -41,14 +41,41 @@
     width: 160%;
     height: 160%;
     background: url('https://i.ibb.co/3y3N9h0/watermark.png') repeat;
-    opacity: 0.1;
+    opacity: 0.15;
     transform: rotate(30deg);
     top: -30%;
     left: -30%;
     pointer-events: none;
   }
 
-  /* Official golden seal */
+  /* Golden logo at top center */
+  .logo {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid gold;
+    background: white;
+    object-fit: contain;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  }
+
+  /* Employee photo */
+  .employee-photo {
+    width: 160px;
+    height: 200px;
+    border-radius: 20px;
+    border: 3px solid #0b3d91;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+    cursor: pointer;
+  }
+
+  /* Seal */
   .seal {
     position: absolute;
     bottom: 15px;
@@ -58,48 +85,23 @@
     background: radial-gradient(circle at 50% 50%, gold, darkgoldenrod);
     border-radius: 50%;
     border: 2px solid #b8860b;
-    box-shadow: 0 0 12px rgba(0,0,0,0.6);
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
+    color: white;
+    font-size: 18px;
     transform: rotate(-5deg);
   }
 
-  .logo {
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%) rotateX(0deg);
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 3px solid gold;
-    background: white;
-    padding: 5px;
-    cursor: pointer;
-    object-fit: contain;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  }
-
-  .employee-photo {
-    width: 170px;
-    height: 170px;
-    border-radius: 25px;
-    border: 3px solid #0b3d91;
-    cursor: pointer;
-    object-fit: cover;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
-  }
-
+  /* Info section */
   .info {
+    margin-left: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
     font-size: 20px;
     color: #0b3d91;
     font-weight: bold;
@@ -107,22 +109,22 @@
 
   .info span {
     display: inline-block;
-    min-width: 230px;
     cursor: text;
     color: #333;
-    padding: 3px 5px;
+    padding: 3px 6px;
     border-radius: 5px;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
   }
 
   .info span:focus {
     outline: none;
-    background: rgba(255, 215, 0, 0.25);
+    background: rgba(255,215,0,0.25);
+    color: #000;
   }
 
   button {
-    margin-top: 15px;
-    padding: 12px;
+    margin-top: 20px;
+    padding: 12px 20px;
     border: none;
     border-radius: 8px;
     background-color: #0b3d91;
@@ -147,7 +149,9 @@
 <div class="card-container">
   <div class="card" id="card">
     <img id="logoPreview" class="logo" src="" alt="Official Logo" title="Click to change logo">
-    <img id="employeePreview" class="employee-photo" src="" alt="Employee Photo" title="Click to change photo">
+    <div style="display:flex; flex-direction: column; gap: 15px;">
+      <img id="employeePreview" class="employee-photo" src="" alt="Employee Photo" title="Click to change photo">
+    </div>
     <div class="info">
       <p>First Name: <span contenteditable="true" id="firstNamePreview">John</span></p>
       <p>Last Name: <span contenteditable="true" id="lastNamePreview">Doe</span></p>
@@ -164,7 +168,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
-  // Change Logo
+  // Logo change
   document.getElementById('logoPreview').addEventListener('click', () => {
     document.getElementById('logoInput').click();
   });
@@ -174,7 +178,7 @@
     }
   });
 
-  // Change Employee Photo
+  // Employee photo change
   document.getElementById('employeePreview').addEventListener('click', () => {
     document.getElementById('employeeInput').click();
   });
@@ -184,11 +188,11 @@
     }
   });
 
-  // Download as PNG
-  document.getElementById('downloadBtn').addEventListener('click', function() {
+  // Download
+  document.getElementById('downloadBtn').addEventListener('click', () => {
     html2canvas(document.getElementById('card'), {scale: 2}).then(canvas => {
       const link = document.createElement('a');
-      link.download = 'diplomatic_card.png';
+      link.download = 'luxury_diplomatic_card.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
