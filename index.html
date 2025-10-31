@@ -3,54 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <title>زمین شادی مریم 🌸</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(120deg, #ffe6f2, #ffb3d9, #ffe6cc);
-    overflow: hidden;
-    height: 100vh;
-  }
-  h1 {
-    text-align: center;
-    margin-top: 20px;
-    color: #ff3399;
-    text-shadow: 2px 2px #fff;
-  }
-  .message {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    color: #ff0066;
-    font-weight: bold;
-    text-shadow: 1px 1px #fff;
-  }
-  .item {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    border-radius: 50%;
-    background: #fff0f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 32px;
-    transition: transform 0.3s;
-  }
-  .particle {
-    position: absolute;
-    font-size: 20px;
-    pointer-events: none;
-    animation: floatUp 1s forwards;
-  }
-  @keyframes floatUp {
-    0% {opacity:1; transform: translateY(0);}
-    100% {opacity:0; transform: translateY(-100px);}
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(120deg, #ffe6f2, #ffb3d9, #ffe6cc);
+  animation: bgMove 25s linear infinite alternate;
+  touch-action: none;
+}
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: #ff3399;
+  text-shadow: 2px 2px #fff;
+  font-size: 24px;
+}
+.message {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #ff0066;
+  font-weight: bold;
+  text-shadow: 1px 1px #fff;
+}
+.item {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  border-radius: 50%;
+  background: #fff0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 28px;
+  transition: all 1s ease;
+}
+.particle {
+  position: absolute;
+  pointer-events: none;
+  animation: floatUp 1s forwards;
+}
+@keyframes floatUp {
+  0% {opacity:1; transform: translateY(0) scale(1);}
+  100% {opacity:0; transform: translateY(-140px) scale(1.5);}
+}
 </style>
 </head>
 <body>
@@ -59,15 +67,12 @@
 
 <script>
 // تاریخ تولد مریم
-const birthDate = new Date(2008, 10, 21); // ماه نوامبر = 10 (0 = ژانویه)
+const birthDate = new Date(2008, 10, 21);
 const today = new Date();
 let age = today.getFullYear() - birthDate.getFullYear();
 const m = today.getMonth() - birthDate.getMonth();
-if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  age--;
-}
+if (m < 0 || (m===0 && today.getDate()<birthDate.getDate())) { age--; }
 
-// پیام خوش آمدگویی
 const messageBox = document.getElementById('message');
 messageBox.textContent = `سلام مریم! تو در 21/11/2008 به دنیا آمدی 💖 | اکنون ${age} ساله هستی 🌸`;
 
@@ -82,44 +87,70 @@ const messages = [
 ];
 
 const emojis = ["💖","🌟","🐱","🍭","🎈","✨","🌸"];
+const sounds = [
+  'https://freesound.org/data/previews/256/256113_3263906-lq.mp3',
+  'https://freesound.org/data/previews/178/178186_285997-lq.mp3',
+  'https://freesound.org/data/previews/91/91452_512123-lq.mp3'
+];
 
-// ایجاد دایره‌های متحرک
-for(let i=0;i<7;i++){
+// إنشاء الدوائر
+function createItem(emoji){
   const item = document.createElement('div');
   item.classList.add('item');
-  item.textContent = emojis[i];
+  item.textContent = emoji;
   document.body.appendChild(item);
-  
+
   item.style.left = Math.random()*window.innerWidth + "px";
   item.style.top = Math.random()*window.innerHeight + "px";
 
-  setInterval(() => {
-    item.style.left = Math.random()*window.innerWidth + "px";
-    item.style.top = Math.random()*window.innerHeight + "px";
-  }, 3000);
+  // حركة مستمرة عشوائية
+  function moveItem(){
+    const x = Math.random() * (window.innerWidth - 70);
+    const y = Math.random() * (window.innerHeight - 70);
+    item.style.left = x + "px";
+    item.style.top = y + "px";
+    setTimeout(moveItem, 2500);
+  }
+  moveItem();
 
-  // تعامل با کلیک
-  item.addEventListener('click', () => {
-    const msg = messages[Math.floor(Math.random() * messages.length)];
+  // تفاعل عند لمس الشاشة
+  function triggerInteraction(x, y){
+    const msg = messages[Math.floor(Math.random()*messages.length)];
     messageBox.textContent = msg;
 
-    for(let j=0;j<5;j++){
+    for(let j=0;j<15;j++){
       const particle = document.createElement('div');
       particle.classList.add('particle');
-      particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      particle.style.left = (item.offsetLeft + 20 + Math.random()*40) + "px";
-      particle.style.top = (item.offsetTop + 20 + Math.random()*40) + "px";
+      particle.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      particle.style.left = (x + Math.random()*60 - 30) + "px";
+      particle.style.top = (y + Math.random()*60 - 30) + "px";
+      particle.style.fontSize = (15 + Math.random()*20) + "px";
       document.body.appendChild(particle);
-      setTimeout(()=>{particle.remove();},1000);
+      setTimeout(()=>particle.remove(),1200);
     }
 
-    item.style.transform = "scale(1.5)";
+    item.style.transform = "scale(1.6)";
     setTimeout(()=>{item.style.transform="scale(1)";},300);
 
-    const audio = new Audio('https://freesound.org/data/previews/256/256113_3263906-lq.mp3');
+    const audio = new Audio(sounds[Math.floor(Math.random()*sounds.length)]);
     audio.play();
+  }
+
+  item.addEventListener('click', e=>{
+    triggerInteraction(e.clientX, e.clientY);
+  });
+
+  // تتبع اللمس المتعدد على الهاتف
+  item.addEventListener('touchstart', e=>{
+    for(let t=0; t<e.touches.length; t++){
+      const touch = e.touches[t];
+      triggerInteraction(touch.clientX, touch.clientY);
+    }
   });
 }
+
+// إنشاء جميع الدوائر
+emojis.forEach(emoji => createItem(emoji));
 </script>
 </body>
 </html>
