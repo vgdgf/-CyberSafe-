@@ -7,27 +7,30 @@
 <style>
   body {
     font-family: 'Tahoma', sans-serif;
-    background: linear-gradient(to bottom, #ffccd5, #ffe6f0);
+    margin: 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    overflow-x: hidden;
+    background: linear-gradient(120deg, #ffccd5, #ffe6f0);
+    animation: colorShift 20s infinite alternate;
+    transition: background 1s ease;
+  }
+
+  @keyframes colorShift {
+    0% { background: linear-gradient(120deg, #ffccd5, #ffe6f0); }
+    20% { background: linear-gradient(120deg, #ffd9cc, #fff0f5); }
+    40% { background: linear-gradient(120deg, #ffe0cc, #fff2f5); }
+    60% { background: linear-gradient(120deg, #ffd1e0, #ffe6f0); }
+    80% { background: linear-gradient(120deg, #ffccd5, #ffe0f5); }
+    100% { background: linear-gradient(120deg, #ffd9cc, #fff0f5); }
   }
 
   h1 {
     color: #e60073;
     text-align: center;
-    margin-bottom: 20px;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    margin-bottom: 25px;
   }
 
   .buttons {
@@ -42,20 +45,19 @@
     padding: 10px 15px;
     border: none;
     border-radius: 10px;
-    background-color: #ff80aa;
+    background: linear-gradient(45deg, #ff80aa, #ff3385);
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: background 0.3s;
   }
 
   button:hover {
-    background-color: #ff3385;
-    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff3385, #e60073);
   }
 
   .message-box {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
     padding: 15px 20px;
     max-width: 90%;
@@ -63,42 +65,8 @@
     font-size: 18px;
     color: #e60073;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    min-height: 60px;
-  }
-
-  .hearts {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    pointer-events: none;
-  }
-
-  .heart {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: #ff3385;
-    transform: rotate(-45deg);
-    animation: fly 4s linear infinite;
-  }
-
-  .heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: #ff3385;
-    border-radius: 50%;
-  }
-
-  .heart::before { top: -7.5px; left: 0; }
-  .heart::after { left: 7.5px; top: 0; }
-
-  @keyframes fly {
-    0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
-    100% { transform: translateY(-600px) rotate(-45deg); opacity: 0; }
+    min-height: 100px;
+    transition: background 0.5s ease;
   }
 </style>
 </head>
@@ -113,6 +81,25 @@
   <button onclick="showMessage(3)">خاطره‌ای شیرین</button>
   <button onclick="showMessage(4)">یک راز کوچک</button>
   <button onclick="showMessage(5)">پیام عاشقانه امروز</button>
+  <button onclick="showMessage(6)">دوست دارم 💖</button>
+  <button onclick="showMessage(7)">به تو فکر می‌کنم</button>
+  <button onclick="showMessage(8)">لبخند تو روزم را روشن می‌کند</button>
+  <button onclick="showMessage(9)">تو دنیای منی</button>
+  <button onclick="showMessage(10)">عشق من برای تو بی‌پایان است</button>
+  <button onclick="showMessage(11)">همیشه به یاد تو هستم</button>
+  <button onclick="showMessage(12)">تو بهترین هدیه زندگی منی</button>
+  <button onclick="showMessage(13)">وقتی به تو فکر می‌کنم، قلبم می‌تپد</button>
+  <button onclick="showMessage(14)">تو دلیل لبخند منی</button>
+  <button onclick="showMessage(15)">با تو هر لحظه زیباست</button>
+  <button onclick="showMessage(16)">تو جادوی زندگی منی</button>
+  <button onclick="showMessage(17)">عشق تو مانند نور خورشید است</button>
+  <button onclick="showMessage(18)">می‌خواهم همیشه کنارت باشم</button>
+  <button onclick="showMessage(19)">تو دنیایم را کامل کردی</button>
+  <button onclick="showMessage(20)">به تو افتخار می‌کنم، مریم 💖</button>
+  <button onclick="showMessage(21)">هر روز با تو بهتر است</button>
+  <button onclick="showMessage(22)">تو قلبم را مال خودت کردی</button>
+  <button onclick="showMessage(23)">عشق تو فراتر از کلمات است</button>
+  <button onclick="showMessage(24)">تو بهترین قسمت زندگی منی</button>
 </div>
 
 <div class="message-box" id="messageBox">یک گزینه را انتخاب کن تا پیام عشق ظاهر شود 💌</div>
@@ -121,25 +108,37 @@
 const messages = [
   "دیدن لبخند تو، مریم، روزم را روشن می‌کند 😘💖",
   "فکر کردن به تو همیشه قلبم را گرم می‌کند 💌",
-  "تو بهترین چیزی هستی که در 21 نوامبر 2008 به دنیا آمد، و قلبم را مال خودت کردی 😏💖",
+  "تو بهترین چیزی هستی که در 21 نوامبر 2008 به دنیا آمدی و قلبم را مال خودت کردی 😏💖",
   "خاطرات ما مانند ستاره‌ای در آسمان ذهنم می‌درخشد 🌟",
   "راز کوچک امروز: همیشه به تو فکر می‌کنم حتی وقتی مشغولم 😉",
-  "پیام عاشقانه امروز: تو دلیل خوشبختی من هستی 💖"
+  "پیام عاشقانه امروز: تو دلیل خوشبختی من هستی 💖",
+  "دوست دارم، مریم 💌💖",
+  "به تو فکر می‌کنم و قلبم می‌تپد 😘",
+  "لبخند تو روزم را روشن می‌کند و همه چیز زیباست 🌸",
+  "تو دنیای من هستی و همیشه خواهی بود 💖",
+  "عشق من برای تو بی‌پایان است 😍",
+  "همیشه به یاد تو هستم 💖",
+  "تو بهترین هدیه زندگی منی 🎁",
+  "وقتی به تو فکر می‌کنم، قلبم می‌تپد 💓",
+  "تو دلیل لبخند منی 😊",
+  "با تو هر لحظه زیباست 🌸",
+  "تو جادوی زندگی منی ✨",
+  "عشق تو مانند نور خورشید است ☀️",
+  "می‌خواهم همیشه کنارت باشم 💖",
+  "تو دنیایم را کامل کردی 💕",
+  "به تو افتخار می‌کنم، مریم 💖",
+  "هر روز با تو بهتر است 😘",
+  "تو قلبم را مال خودت کردی 💌",
+  "عشق تو فراتر از کلمات است 😍",
+  "تو بهترین قسمت زندگی منی 💖"
 ];
 
 function showMessage(index) {
   const messageBox = document.getElementById('messageBox');
   messageBox.innerHTML = messages[index];
-  createHeart();
-}
-
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.animationDuration = (3 + Math.random() * 2) + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 4000);
+  // تغيير لون الخلفية الصندوق عند ظهور الرسالة
+  const colors = ["#ffe6f0", "#ffd9cc", "#ffe0cc", "#ffd1e0", "#ffccd5"];
+  messageBox.style.background = colors[Math.floor(Math.random() * colors.length)] + "CC";
 }
 </script>
 
