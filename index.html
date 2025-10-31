@@ -2,129 +2,124 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>آزورا 💖</title>
+<title>زمین شادی مریم 🌸</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap');
-
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    background: radial-gradient(circle at center, #0a0a0a, #120036, #240050);
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #ffe6f2, #ffb3d9, #ffe6cc);
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    perspective: 1000px;
-}
-
-/* النجوم الدوّارة */
-.star {
-    position: absolute;
-    width: 3px; height: 3px;
-    background: white;
-    border-radius: 50%;
-    animation: spin 20s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotateY(0deg) rotateX(0deg) translateZ(200px); }
-    100% { transform: rotateY(360deg) rotateX(360deg) translateZ(200px); }
-}
-
-/* القلوب المتطايرة */
-.heart {
-    position: absolute;
-    font-size: 2.5rem;
-    color: #ff4b5c;
-    animation: fly 5s linear infinite;
-}
-
-@keyframes fly {
-    0% { transform: translateY(0) translateX(0) scale(1); opacity:1; }
-    50% { transform: translateY(-200px) translateX(50px) scale(1.2); opacity:0.8; }
-    100% { transform: translateY(-400px) translateX(-50px) scale(1); opacity:0; }
-}
-
-/* صندوق الاسم والنص */
-.container {
-    position: relative;
+    height: 100vh;
+  }
+  h1 {
     text-align: center;
-    padding: 60px;
-    background: rgba(0,0,0,0.5);
-    border-radius: 25px;
-    box-shadow: 0 0 60px rgba(255,255,255,0.2);
-    backdrop-filter: blur(15px);
-    z-index: 1;
-    direction: rtl;
-    transform-style: preserve-3d;
-}
-
-/* الاسم الكبير */
-h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 6rem;
-    background: linear-gradient(90deg, #ffd700, #ff6f91, #6a11cb, #2575fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glowText 3s ease-in-out infinite alternate, rotate3d 10s linear infinite;
-}
-
-@keyframes glowText {
-    0% { text-shadow: 0 0 10px #fff,0 0 20px #ffd700,0 0 30px #ff6f91,0 0 40px #6a11cb; }
-    100% { text-shadow: 0 0 20px #fff,0 0 40px #ffd700,0 0 60px #ff6f91,0 0 80px #6a11cb; }
-}
-
-@keyframes rotate3d {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
-}
-
-/* نص التاريخ */
-h2 {
-    font-size: 2rem;
     margin-top: 20px;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ff6f91, 0 0 20px #6a11cb;
-}
-
-/* النصوص المتلألئة */
-p {
-    font-size: 1.3rem;
-    color: #ffe0e6;
-    margin-top: 15px;
-    line-height: 1.6;
-    animation: shineText 5s infinite alternate;
-}
-
-@keyframes shineText {
-    0% { text-shadow: 0 0 5px #fff; }
-    50% { text-shadow: 0 0 20px #ffd700,0 0 40px #ff6f91,0 0 60px #6a11cb; }
-    100% { text-shadow: 0 0 5px #fff; }
-}
-
+    color: #ff3399;
+    text-shadow: 2px 2px #fff;
+  }
+  .message {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #ff0066;
+    font-weight: bold;
+    text-shadow: 1px 1px #fff;
+  }
+  .item {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border-radius: 50%;
+    background: #fff0f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 32px;
+    transition: transform 0.3s;
+  }
+  .particle {
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+    animation: floatUp 1s forwards;
+  }
+  @keyframes floatUp {
+    0% {opacity:1; transform: translateY(0);}
+    100% {opacity:0; transform: translateY(-100px);}
+  }
 </style>
 </head>
 <body>
-<!-- نجوم متعددة -->
-<div class="star" style="top:10%; left:20%;"></div>
-<div class="star" style="top:30%; left:70%;"></div>
-<div class="star" style="top:50%; left:40%;"></div>
-<div class="star" style="top:70%; left:80%;"></div>
-<div class="star" style="top:80%; left:10%;"></div>
+<h1>خوش آمدی به زمین شادی مریم 🌸</h1>
+<div class="message" id="message"></div>
 
-<!-- قلوب متعددة -->
-<div class="heart" style="left:20%; top:80%;">❤️</div>
-<div class="heart" style="left:50%; top:90%;">❤️</div>
-<div class="heart" style="left:70%; top:85%;">❤️</div>
+<script>
+// تاریخ تولد مریم
+const birthDate = new Date(2008, 10, 21); // ماه نوامبر = 10 (0 = ژانویه)
+const today = new Date();
+let age = today.getFullYear() - birthDate.getFullYear();
+const m = today.getMonth() - birthDate.getMonth();
+if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  age--;
+}
 
-<div class="container">
-    <h1>آزورا</h1>
-    <h2>تاریخ تولد: ۱۶ / ۱۲ / ۲۰۰۰</h2>
-    <p>این صفحه مخصوص توست، عزیزم 💖</p>
-    <p>امیدوارم روزت پر از شادی و لبخند باشد ✨</p>
-</div>
+// پیام خوش آمدگویی
+const messageBox = document.getElementById('message');
+messageBox.textContent = `سلام مریم! تو در 21/11/2008 به دنیا آمدی 💖 | اکنون ${age} ساله هستی 🌸`;
+
+const messages = [
+  "تو فوق‌العاده‌ای مریم! 💖",
+  "لبخندت روزم را روشن می‌کند 😄",
+  "گربه‌های بامزه تو را دوست دارند 🐱",
+  "قلبت پر از عشق است 🌸",
+  "امروز روز شادی توست 🎉",
+  "مثل خودت زیبا 🌈",
+  "ستاره‌های آسمان برای خوشبختی تو دعا می‌کنند ✨"
+];
+
+const emojis = ["💖","🌟","🐱","🍭","🎈","✨","🌸"];
+
+// ایجاد دایره‌های متحرک
+for(let i=0;i<7;i++){
+  const item = document.createElement('div');
+  item.classList.add('item');
+  item.textContent = emojis[i];
+  document.body.appendChild(item);
+  
+  item.style.left = Math.random()*window.innerWidth + "px";
+  item.style.top = Math.random()*window.innerHeight + "px";
+
+  setInterval(() => {
+    item.style.left = Math.random()*window.innerWidth + "px";
+    item.style.top = Math.random()*window.innerHeight + "px";
+  }, 3000);
+
+  // تعامل با کلیک
+  item.addEventListener('click', () => {
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    messageBox.textContent = msg;
+
+    for(let j=0;j<5;j++){
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      particle.style.left = (item.offsetLeft + 20 + Math.random()*40) + "px";
+      particle.style.top = (item.offsetTop + 20 + Math.random()*40) + "px";
+      document.body.appendChild(particle);
+      setTimeout(()=>{particle.remove();},1000);
+    }
+
+    item.style.transform = "scale(1.5)";
+    setTimeout(()=>{item.style.transform="scale(1)";},300);
+
+    const audio = new Audio('https://freesound.org/data/previews/256/256113_3263906-lq.mp3');
+    audio.play();
+  });
+}
+</script>
 </body>
 </html>
