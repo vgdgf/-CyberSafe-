@@ -1,146 +1,400 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دنیای جادویی مریم</title>
-<style>
-  body {
-    font-family: 'Tahoma', sans-serif;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(120deg, #ffccd5, #ffe6f0);
-    animation: colorShift 20s infinite alternate;
-    transition: background 1s ease;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorate | The Text Ornamentation Library</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-  @keyframes colorShift {
-    0% { background: linear-gradient(120deg, #ffccd5, #ffe6f0); }
-    20% { background: linear-gradient(120deg, #ffd9cc, #fff0f5); }
-    40% { background: linear-gradient(120deg, #ffe0cc, #fff2f5); }
-    60% { background: linear-gradient(120deg, #ffd1e0, #ffe6f0); }
-    80% { background: linear-gradient(120deg, #ffccd5, #ffe0f5); }
-    100% { background: linear-gradient(120deg, #ffd9cc, #fff0f5); }
-  }
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --font-main: 'Cairo', sans-serif;
+            --transition: all 0.2s ease;
+        }
 
-  h1 {
-    color: #e60073;
-    text-align: center;
-    margin-bottom: 25px;
-  }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-  button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(45deg, #ff80aa, #ff3385);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
+        /* --- Header --- */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-  button:hover {
-    background: linear-gradient(45deg, #ff3385, #e60073);
-  }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-  .message-box {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 15px;
-    padding: 15px 20px;
-    max-width: 90%;
-    text-align: center;
-    font-size: 18px;
-    color: #e60073;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    min-height: 100px;
-    transition: background 0.5s ease;
-  }
-</style>
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span { color: var(--text-color); }
+
+        /* --- Main Input Section --- */
+        .input-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero-text {
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        .input-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-color);
+            font-family: var(--font-main);
+            font-size: 1.25rem;
+            padding: 1.5rem;
+            resize: none;
+            transition: var(--transition);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        /* --- Output Grid --- */
+        .results-section {
+            padding-bottom: 4rem;
+            flex: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content {
+            font-size: 1.1rem;
+            word-break: break-word;
+            direction: auto; /* Detects RTL/LTR automatically */
+        }
+
+        .copy-hint {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            opacity: 0;
+            transition: var(--transition);
+            color: var(--primary);
+        }
+
+        .card:hover .copy-hint {
+            opacity: 1;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Toast Notification --- */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .logo span { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-<h1>سلام مریم 💖، خوش آمدی به دنیای جادویی من!</h1>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                ❖ <span>DecoLibrary</span>
+            </a>
+            <div style="color: var(--text-muted); font-size: 0.9rem;">
+                Professional Text Decorator
+            </div>
+        </div>
+    </header>
 
-<div class="buttons">
-  <button onclick="showMessage(0)">امروز حالم خوبه</button>
-  <button onclick="showMessage(1)">چیزی مرا خوشحال می‌کند</button>
-  <button onclick="showMessage(2)">می‌خواهم چیزی از تو بشنوم</button>
-  <button onclick="showMessage(3)">خاطره‌ای شیرین</button>
-  <button onclick="showMessage(4)">یک راز کوچک</button>
-  <button onclick="showMessage(5)">پیام عاشقانه امروز</button>
-  <button onclick="showMessage(6)">دوست دارم 💖</button>
-  <button onclick="showMessage(7)">به تو فکر می‌کنم</button>
-  <button onclick="showMessage(8)">لبخند تو روزم را روشن می‌کند</button>
-  <button onclick="showMessage(9)">تو دنیای منی</button>
-  <button onclick="showMessage(10)">عشق من برای تو بی‌پایان است</button>
-  <button onclick="showMessage(11)">همیشه به یاد تو هستم</button>
-  <button onclick="showMessage(12)">تو بهترین هدیه زندگی منی</button>
-  <button onclick="showMessage(13)">وقتی به تو فکر می‌کنم، قلبم می‌تپد</button>
-  <button onclick="showMessage(14)">تو دلیل لبخند منی</button>
-  <button onclick="showMessage(15)">با تو هر لحظه زیباست</button>
-  <button onclick="showMessage(16)">تو جادوی زندگی منی</button>
-  <button onclick="showMessage(17)">عشق تو مانند نور خورشید است</button>
-  <button onclick="showMessage(18)">می‌خواهم همیشه کنارت باشم</button>
-  <button onclick="showMessage(19)">تو دنیایم را کامل کردی</button>
-  <button onclick="showMessage(20)">به تو افتخار می‌کنم، مریم 💖</button>
-  <button onclick="showMessage(21)">هر روز با تو بهتر است</button>
-  <button onclick="showMessage(22)">تو قلبم را مال خودت کردی</button>
-  <button onclick="showMessage(23)">عشق تو فراتر از کلمات است</button>
-  <button onclick="showMessage(24)">تو بهترین قسمت زندگی منی</button>
-</div>
+    <main class="container">
+        <section class="input-section">
+            <h1 class="hero-text">Type your text to decorate instantly</h1>
+            <div class="input-wrapper">
+                <textarea id="inputText" placeholder="Type English or Arabic here... / اكتب النص هنا"></textarea>
+            </div>
+        </section>
 
-<div class="message-box" id="messageBox">یک گزینه را انتخاب کن تا پیام عشق ظاهر شود 💌</div>
+        <section class="results-section">
+            <div class="grid" id="outputGrid">
+                </div>
+        </section>
+    </main>
 
-<script>
-const messages = [
-  "دیدن لبخند تو، مریم، روزم را روشن می‌کند 😘💖",
-  "فکر کردن به تو همیشه قلبم را گرم می‌کند 💌",
-  "تو بهترین چیزی هستی که در 21 نوامبر 2008 به دنیا آمدی و قلبم را مال خودت کردی 😏💖",
-  "خاطرات ما مانند ستاره‌ای در آسمان ذهنم می‌درخشد 🌟",
-  "راز کوچک امروز: همیشه به تو فکر می‌کنم حتی وقتی مشغولم 😉",
-  "پیام عاشقانه امروز: تو دلیل خوشبختی من هستی 💖",
-  "دوست دارم، مریم 💌💖",
-  "به تو فکر می‌کنم و قلبم می‌تپد 😘",
-  "لبخند تو روزم را روشن می‌کند و همه چیز زیباست 🌸",
-  "تو دنیای من هستی و همیشه خواهی بود 💖",
-  "عشق من برای تو بی‌پایان است 😍",
-  "همیشه به یاد تو هستم 💖",
-  "تو بهترین هدیه زندگی منی 🎁",
-  "وقتی به تو فکر می‌کنم، قلبم می‌تپد 💓",
-  "تو دلیل لبخند منی 😊",
-  "با تو هر لحظه زیباست 🌸",
-  "تو جادوی زندگی منی ✨",
-  "عشق تو مانند نور خورشید است ☀️",
-  "می‌خواهم همیشه کنارت باشم 💖",
-  "تو دنیایم را کامل کردی 💕",
-  "به تو افتخار می‌کنم، مریم 💖",
-  "هر روز با تو بهتر است 😘",
-  "تو قلبم را مال خودت کردی 💌",
-  "عشق تو فراتر از کلمات است 😍",
-  "تو بهترین قسمت زندگی منی 💖"
-];
+    <footer>
+        <p>&copy; 2024 DecoLibrary. Integrated Decoration System.</p>
+    </footer>
 
-function showMessage(index) {
-  const messageBox = document.getElementById('messageBox');
-  messageBox.innerHTML = messages[index];
-  // تغيير لون الخلفية الصندوق عند ظهور الرسالة
-  const colors = ["#ffe6f0", "#ffd9cc", "#ffe0cc", "#ffd1e0", "#ffccd5"];
-  messageBox.style.background = colors[Math.floor(Math.random() * colors.length)] + "CC";
-}
-</script>
+    <div id="toast" class="toast">Copied to clipboard!</div>
 
+    <script>
+        // --- Configuration & Data ---
+        const inputText = document.getElementById('inputText');
+        const outputGrid = document.getElementById('outputGrid');
+        const toast = document.getElementById('toast');
+
+        // Mappings for English (Unicode Math/Symbols)
+        const styles = {
+            boldSerif: "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳",
+            italicSerif: "𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧",
+            script: "𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏",
+            doubleStruck: "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫",
+            monospace: "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣",
+            bubbles: "ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ"
+        };
+        
+        const standardAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+        // --- Core Decoration Logic ---
+
+        // 1. English Mapper
+        function decorateEnglish(text, styleChars) {
+            return text.split('').map(char => {
+                const index = standardAlphabet.indexOf(char);
+                return index !== -1 ? styleChars[index * 2] + (styleChars[index * 2 + 1] || '') : char; // Handle surrogate pairs roughly
+            }).join('');
+        }
+        
+        // Better English Mapper (handles surrogate pairs correctly)
+        function mapEnglish(text, targetAlphabet) {
+            // Convert target string to array of code points for safe indexing
+            const targetArray = Array.from(targetAlphabet);
+            return text.split('').map(char => {
+                const idx = standardAlphabet.indexOf(char);
+                return idx > -1 ? targetArray[idx] : char;
+            }).join('');
+        }
+
+        // 2. Arabic Logic (Zakhrafa)
+        function isArabic(text) {
+            const arabicPattern = /[\u0600-\u06FF]/;
+            return arabicPattern.test(text);
+        }
+
+        // Arabic Style: Tatweel (Elongation)
+        function arabicTatweel(text) {
+            return text.split('').map(char => {
+                // Add tatweel randomly to connectable letters
+                if (Math.random() > 0.6 && "بتحجخعغفقكلمنهي".includes(char)) {
+                    return char + "ـــ";
+                }
+                return char;
+            }).join('');
+        }
+
+        // Arabic Style: Decoration Marks
+        function arabicDecor(text) {
+            const decorations = ["َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ْ", "ّ"];
+            return text.split('').map(char => {
+                if ("qwertyuiopasdfghjklzxcvbnm ".includes(char)) return char;
+                if (Math.random() > 0.5) {
+                    return char + decorations[Math.floor(Math.random() * decorations.length)];
+                }
+                return char;
+            }).join('');
+        }
+
+        // --- Rendering Logic ---
+
+        function generateDecorations(text) {
+            if (!text) return [];
+
+            const results = [];
+
+            // If text contains Arabic
+            if (isArabic(text)) {
+                results.push({ label: "Arabic Calligraphy", content: arabicTatweel(text) });
+                results.push({ label: "Vocalized", content: arabicDecor(text) });
+                results.push({ label: "Royal Frame", content: `꧁ ${text} ꧂` });
+                results.push({ label: "Star Frame", content: `★ ${text} ★` });
+                results.push({ label: "Brackets", content: `『 ${text} 』` });
+                results.push({ label: "Arrows", content: `« ${text} »` });
+                results.push({ label: "Dense Tatweel", content: text.replace(/ /g, "ــــــ") });
+            } 
+            
+            // English/Universal Styles
+            // We always show these because user might mix English and Arabic
+            results.push({ label: "Bold Serif", content: mapEnglish(text, styles.boldSerif) });
+            results.push({ label: "Italic", content: mapEnglish(text, styles.italicSerif) });
+            results.push({ label: "Script", content: mapEnglish(text, styles.script) });
+            results.push({ label: "Double Struck", content: mapEnglish(text, styles.doubleStruck) });
+            results.push({ label: "Monospace", content: mapEnglish(text, styles.monospace) });
+            results.push({ label: "Bubbles", content: mapEnglish(text, styles.bubbles) });
+            results.push({ label: "Wide Text", content: text.split('').join(' ') });
+            results.push({ label: "Upside Down", content: flipText(text) });
+
+            return results;
+        }
+
+        function flipText(text) {
+            // Simple flip map
+            const chars = "abcdefghijklmnopqrstuvwxyz,.?!'(){}[]";
+            const flip = "ɐqɔpǝɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz'˙¿¡,)(}{][";
+            return text.toLowerCase().split('').reverse().map(c => {
+                const i = chars.indexOf(c);
+                return i !== -1 ? flip[i] : c;
+            }).join('');
+        }
+
+        // --- View Update ---
+
+        function updateGrid() {
+            const text = inputText.value;
+            outputGrid.innerHTML = '';
+
+            if (!text.trim()) {
+                outputGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Start typing to see decorations...</div>`;
+                return;
+            }
+
+            const items = generateDecorations(text);
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => copyToClipboard(item.content);
+                
+                card.innerHTML = `
+                    <div class="card-label">${item.label}</div>
+                    <div class="card-content">${item.content}</div>
+                    <div class="copy-hint">Click to Copy</div>
+                `;
+                outputGrid.appendChild(card);
+            });
+        }
+
+        // --- Utilities ---
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            });
+        }
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // --- Event Listeners ---
+        inputText.addEventListener('input', updateGrid);
+
+        // Initial call
+        updateGrid();
+
+    </script>
 </body>
 </html>
